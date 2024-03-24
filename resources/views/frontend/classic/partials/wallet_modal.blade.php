@@ -18,6 +18,9 @@
                                 <select class="form-control selectpicker rounded-0"
                                     data-minimum-results-for-search="Infinity" name="payment_option"
                                     data-live-search="true">
+                                    @if (get_setting('uddoktapay_payment') == 1)
+                                        <option value="uddoktapay">{{ translate('BD Payment Methods') }}</option>
+                                    @endif
                                     @if (get_setting('paypal_payment') == 1)
                                         <option value="paypal">{{ translate('Paypal') }}</option>
                                     @endif

@@ -47,6 +47,7 @@ use App\Http\Controllers\SupportTicketController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\SizeChartController;
+use App\Models\City;
 
 /*
   |--------------------------------------------------------------------------
@@ -260,6 +261,7 @@ Route::group(['middleware' => ['user', 'verified', 'unbanned']], function () {
 // Checkout Routs
 Route::group(['prefix' => 'checkout'], function () {
     Route::controller(CheckoutController::class)->group(function () {
+        Route::post('/checkout/without/auth','checkout_without_auth')->name('checkout.without_auth');
         Route::get('/', 'get_shipping_info')->name('checkout.shipping_info');
         Route::any('/delivery-info', 'store_shipping_info')->name('checkout.store_shipping_infostore');
         Route::post('/payment-select', 'store_delivery_info')->name('checkout.store_delivery_info');
@@ -333,9 +335,9 @@ Route::controller(AddressController::class)->group(function () {
     Route::post('/get-cities', 'getCities')->name('get-city');
 });
 
+Route::get('invoice/{order_id}', [InvoiceController::class, 'invoice_download'])->name('invoice.download');
 Route::group(['middleware' => ['auth']], function () {
 
-    Route::get('invoice/{order_id}', [InvoiceController::class, 'invoice_download'])->name('invoice.download');
 
     // Reviews
     Route::resource('/reviews', ReviewController::class);
@@ -461,4 +463,9 @@ Route::controller(PageController::class)->group(function () {
 
     //Custom page
     Route::get('/{slug}', 'show_custom_page')->name('custom-pages.show_custom_page');
+});
+
+Route::get('/shapping/charge/custom/{city}', function () {
+    $city = request('city');
+    return City::where('id', $city)->first();
 });

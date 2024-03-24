@@ -200,7 +200,9 @@
                                     {{ count($order->orderDetails) }}
                                 </td>
                                 <td>
-                                    @if ($order->user != null)
+                                    @if(json_decode($order->shipping_address)->name != null)
+                                        {{ json_decode($order->shipping_address)->name }}
+                                    @elseif ($order->user != null)
                                         {{ $order->user->name }}
                                     @else
                                         Guest ({{ $order->guest_id }})

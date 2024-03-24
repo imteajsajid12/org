@@ -106,9 +106,9 @@
                             <strong class="text-main">
                                 {{ json_decode($order->shipping_address)->name }}
                             </strong><br>
-                            {{ json_decode($order->shipping_address)->email }}<br>
+                            {{ json_decode($order->shipping_address)->email ?? null}}<br>
                             {{ json_decode($order->shipping_address)->phone }}<br>
-                            {{ json_decode($order->shipping_address)->address }}, {{ json_decode($order->shipping_address)->city }}, @if(isset(json_decode($order->shipping_address)->state)) {{ json_decode($order->shipping_address)->state }} - @endif {{ json_decode($order->shipping_address)->postal_code }}<br>
+                            {{ json_decode($order->shipping_address)->address }}, {{ json_decode($order->shipping_address)->city }}, @if(isset(json_decode($order->shipping_address)->state)) {{ json_decode($order->shipping_address)->state }} - @endif {{ json_decode($order->shipping_address)->postal_code ?? null}}<br>
                             {{ json_decode($order->shipping_address)->country }}
                         </address>
                     @else
@@ -116,7 +116,7 @@
                             <strong class="text-main">
                                 {{ $order->user->name }}
                             </strong><br>
-                            {{ $order->user->email }}<br>
+                            {{ $order->user->email ?? null}}<br>
                             {{ $order->user->phone }}<br>
                         </address>
                     @endif

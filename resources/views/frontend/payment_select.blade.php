@@ -79,6 +79,23 @@
                             <div class="card-body text-center px-4 pt-0">
                                 <div class="row gutters-10">
                                     <!-- Paypal -->
+                                    @if (get_setting('uddoktapay_payment') == 1)
+                                        <div class="col-6 col-xl-3 col-md-4">
+                                            <label class="aiz-megabox d-block mb-3">
+                                                <input value="uddoktapay" class="online_payment" type="radio"
+                                                    name="payment_option" checked>
+                                                <span class="d-block aiz-megabox-elem rounded-0 p-3">
+                                                    <img src="{{ static_asset('assets/img/cards/uddoktapay.png') }}"
+                                                        class="img-fit mb-2">
+                                                    <span class="d-block text-center">
+                                                        <span
+                                                            class="d-block fw-600 fs-15">{{ translate('BD Payment Methods') }}</span>
+                                                    </span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    @endif
+                                    <!-- Paypal -->
                                     @if (get_setting('paypal_payment') == 1)
                                         <div class="col-6 col-xl-3 col-md-4">
                                             <label class="aiz-megabox d-block mb-3">
@@ -640,7 +657,7 @@
 
                 <!-- Cart Summary -->
                 <div class="col-lg-4 mt-lg-0 mt-4" id="cart_summary">
-                    @include('frontend.'.get_setting('homepage_select').'.partials.cart_summary')
+                    @include('frontend.' . get_setting('homepage_select') . '.partials.cart_summary')
                 </div>
             </div>
         </div>

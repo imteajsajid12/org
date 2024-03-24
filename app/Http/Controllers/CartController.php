@@ -172,7 +172,7 @@ class CartController extends Controller
 
         return array(
             'cart_count' => count($carts),
-            'cart_view' => view('frontend.'.get_setting('homepage_select').'.partials.cart_details', compact('carts'))->render(),
+            'cart_view' => view('frontend.minima.partials.cart_details', compact('carts'))->render(),
             'nav_cart_view' => view('frontend.'.get_setting('homepage_select').'.partials.cart')->render(),
         );
     }
@@ -235,7 +235,7 @@ class CartController extends Controller
 
         return array(
             'cart_count' => count($carts),
-            'cart_view' => view('frontend.'.get_setting('homepage_select').'.partials.cart_details', compact('carts'))->render(),
+            'cart_view' => view('frontend.minima.partials.cart_details', compact('carts'))->render(),
             'nav_cart_view' => view('frontend.'.get_setting('homepage_select').'.partials.cart')->render(),
         );
     }

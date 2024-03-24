@@ -54,7 +54,7 @@
                 <div class="row">
                     <div class="col-md-6">
                 <!-- Top Section -->
-                <div class="d-flex flex-wrap mb-2 mb-md-3 align-items-baseline justify-content-between">
+                <div class="d-flex flex-wrap mb-2 mb-md-3 align-items-baseline">
                     <!-- Title -->
                     <h3 class="fs-16 fs-md-20 fw-700 mb-2 mb-sm-0">
                         <span class="d-inline-block">{{ translate('Flash Sale') }}</span>
@@ -65,7 +65,14 @@
                                 transform="translate(-15 -5)" fill="#fcc201" />
                         </svg>
                     </h3>
+                    <div>
+                        <div class="aiz-count-down-circle"
+                             end-date="{{ date('Y/m/d H:i:s', $flash_deal->end_date) }}"></div>
+
+                    </div>
                     <!-- Links -->
+
+
                 </div>
                     </div>
                     <div class="col-md-6">
@@ -77,12 +84,8 @@
                     <div class="col-xxl-12 col-lg-12 col-12">
                         <!-- Top Section -->
                         <div class="d-flex mb-2 mb-md-3 align-items-baseline justify-content-between">
-                                <div class="bg-white">
-                                    <div class="aiz-count-down-circle"
-                                         end-date="{{ date('Y/m/d H:i:s', $flash_deal->end_date) }}"></div>
-                                </div>
-                            </div>
 
+                        </div>
                         @php
                             $flash_deal_products = get_flash_deal_products($flash_deal->id);
                         @endphp
@@ -689,125 +692,158 @@
     {{--        </div>--}}
     {{--    </div>--}}
 
-    <div class="container mt-2 mt-md-3 mb-2 mb-md-3 pb-4 " style="border-radius: 20px">
-        <div class="row">
-            <div class="col-xl-6 py-3 py-xl-0">
-                <!-- Top Sellers -->
-                @if (get_setting('vendor_system_activation') == 1)
-                    @php
-                        $best_selers = get_best_sellers(6);
-                    @endphp
-                    @if (count($best_selers) > 0)
-                        <section class="mt-2 mt-md-3 border h-100">
-                            <div class="p-4">
-                                <!-- Top Section -->
-                                <div class="d-flex mb-3 mb-md-4 align-items-baseline justify-content-between">
-                                    <!-- Title -->
-                                    <h3 class="fs-16 fs-md-20 fw-700 mb-2 mb-sm-0">
-                                        <span class="pb-3">{{ translate('Top Sellers') }}</span>
-                                    </h3>
-                                    <!-- Links -->
-                                    <div class="d-flex">
-                                        <a class="text-blue fs-10 fs-md-12 fw-700 hov-text-primary animate-underline-primary"
-                                           href="{{ route('sellers') }}">{{ translate('View All Sellers') }}</a>
-                                    </div>
-                                </div>
-                                <!-- Sellers Section -->
-                                <div class="aiz-carousel arrow-x-0 arrow-inactive-none" data-rows="2" data-items="3"
-                                     data-xxl-items="3"
-                                     data-xl-items="2.5" data-lg-items="3.4" data-md-items="2.5" data-sm-items="2"
-                                     data-xs-items="1.4"
-                                     data-arrows="true" data-dots="false">
-                                    @foreach ($best_selers as $key => $seller)
-                                        @if ($seller->user != null)
-                                            <div
-                                                class="carousel-box h-100 position-relative text-center has-transition hov-animate-outline">
-                                                <div class="position-relative px-3 px-xl-2 py-3">
-                                                    <!-- Shop logo & Verification Status -->
-                                                    <div class="mx-auto size-100px">
-                                                        <a href="{{ route('shop.visit', $seller->slug) }}"
-                                                           class="d-flex mx-auto justify-content-center align-item-center size-100px border overflow-hidden hov-scale-img"
-                                                           tabindex="0"
-                                                           style="border: 1px solid #e5e5e5; border-radius: 50%; box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.06);">
-                                                            <img
-                                                                src="{{ static_asset('assets/img/placeholder-rect.jpg') }}"
-                                                                data-src="{{ uploaded_asset($seller->logo) }}"
-                                                                alt="{{ $seller->name }}"
-                                                                class="img-fit lazyload has-transition"
-                                                                onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder-rect.jpg') }}';">
-                                                        </a>
-                                                    </div>
-                                                    <!-- Shop name -->
-                                                    <h2 class="fs-14 fw-700 text-dark text-truncate-2 h-40px mt-3 mt-md-4 mb-0 mb-md-3">
-                                                        <a href="{{ route('shop.visit', $seller->slug) }}"
-                                                           class="text-reset hov-text-primary"
-                                                           tabindex="0">{{ $seller->name }}</a>
-                                                    </h2>
-                                                    <!-- Shop Rating -->
-                                                    <div class="rating rating-mr-1 text-dark mb-3">
-                                                        {{ renderStarRating($seller->rating) }}
-                                                        <span class="opacity-60 fs-14">({{ $seller->num_of_reviews }}
-                                                            {{ translate('Reviews') }})</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                            </div>
-                        </section>
-                    @endif
-                @endif
-            </div>
-
-            <div class="col-xl-6 py-3 py-xl-0">
-                <!-- Top Brands -->
-                @if (get_setting('top_brands') != null)
-                    <section class="mt-2 mt-md-3 border h-100">
-                        <div class="p-4">
-                            <!-- Top Section -->
-                            <div class="d-flex mb-3 mb-md-4 align-items-baseline justify-content-between">
-                                <!-- Title -->
-                                <h3 class="fs-16 fs-md-20 fw-700 mb-2 mb-sm-0">{{ translate('Top Brands') }}</h3>
-                                <!-- Links -->
-                                <div class="d-flex">
-                                    <a class="text-blue fs-10 fs-md-12 fw-700 hov-text-primary animate-underline-primary"
-                                       href="{{ route('brands.all') }}">{{ translate('View All Brands') }}</a>
-                                </div>
-                            </div>
-                            <!-- Brands Section -->
-                            <div class="aiz-carousel arrow-x-0 arrow-inactive-none"
-                                 data-rows="2" data-items="3" data-xxl-items="3"
-                                 data-xl-items="3" data-lg-items="3" data-md-items="3" data-sm-items="3"
-                                 data-xs-items="1.4"
-                                 data-arrows="true" data-dots="false">
-                                @php
-                                    $top_brands = json_decode(get_setting('top_brands'));
-                                    $brands = get_brands($top_brands);
-                                @endphp
-                                @foreach ($brands as $brand)
-                                    <div
-                                        class="carousel-box position-relative text-center hov-scale-img has-transition hov-shadow-out z-1">
-                                        <a href="{{ route('products.brand', $brand->slug) }}" class="d-block p-sm-2">
-                                            <img
-                                                src="{{ isset($brand->brandLogo->file_name) ? my_asset($brand->brandLogo->file_name) : static_asset('assets/img/placeholder.jpg') }}"
-                                                class="lazyload h-md-110px mx-auto has-transition p-2 p-sm-4"
-                                                alt="{{ $brand->getTranslation('name') }}"
-                                                onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';">
-                                            <p class="text-center text-dark fs-12 fs-md-14 fw-700 mt-2 mb-2 text-truncate"
-                                               title="{{ $brand->getTranslation('name') }}">
-                                                {{ $brand->getTranslation('name') }}
-                                            </p>
+    {{-- new top sellers --}}
+    <!-- Top Sellers -->
+    @if (get_setting('vendor_system_activation') == 1)
+        @php
+            $best_selers = get_best_sellers(5);
+        @endphp
+        @if (count($best_selers) > 0)
+        {{-- <section class="mb-2 mb-md-3 mt-2 mt-md-3"> --}}
+            <div class="container mt-2 mt-md-3 mb-2 mb-md-3 pb-4 pt-4" style="border-radius: 20px">
+                <!-- Top Section -->
+                <div class="d-flex mb-2 mb-md-3 align-items-baseline justify-content-between">
+                    <!-- Title -->
+                    <h3 class="fs-16 fs-md-20 fw-700 mb-2 mb-sm-0">
+                        <span class="pb-3">{{ translate('Top Sellers') }}</span>
+                    </h3>
+                    <!-- Links -->
+                    <div class="d-flex">
+                        {{-- <a class="text-blue fs-10 fs-md-12 fw-700 hov-text-primary animate-underline-primary" --}}
+                        <a class="font-medium px-4 py-1 text-white text-sm bg-primary rounded-pill"
+                            href="{{ route('sellers') }}">{{ translate('View All Sellers') }}</a>
+                    </div>
+                </div>
+                <!-- Sellers Section -->
+                <div class="aiz-carousel arrow-x-0 arrow-inactive-none" data-items="5" data-xxl-items="5"
+                    data-xl-items="4" data-lg-items="3.4" data-md-items="2.5" data-sm-items="2" data-xs-items="1.4"
+                    data-arrows="true" data-dots="false">
+                    @foreach ($best_selers as $key => $seller)
+                        @if ($seller->user != null)
+                            <div
+                                class="carousel-box h-100 position-relative text-center border-right border-top border-bottom @if ($key == 0) border-left @endif has-transition hov-animate-outline">
+                                <div class="position-relative px-3" style="padding-top: 2rem; padding-bottom:2rem;">
+                                    <!-- Shop logo & Verification Status -->
+                                    <div class="position-relative mx-auto size-100px size-md-120px">
+                                        <a href="{{ route('shop.visit', $seller->slug) }}"
+                                            class="d-flex mx-auto justify-content-center align-item-center size-100px size-md-120px border overflow-hidden hov-scale-img"
+                                            tabindex="0"
+                                            style="border: 1px solid #e5e5e5; border-radius: 50%; box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.06);">
+                                            <img src="{{ static_asset('assets/img/placeholder-rect.jpg') }}"
+                                                data-src="{{ uploaded_asset($seller->logo) }}" alt="{{ $seller->name }}"
+                                                class="img-fit lazyload has-transition"
+                                                onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder-rect.jpg') }}';">
                                         </a>
+                                        <div class="absolute-top-right z-1 mr-md-2 mt-1 rounded-content bg-white">
+                                            @if ($seller->verification_status == 1)
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24.001" height="24"
+                                                    viewBox="0 0 24.001 24">
+                                                    <g id="Group_25929" data-name="Group 25929"
+                                                        transform="translate(-480 -345)">
+                                                        <circle id="Ellipse_637" data-name="Ellipse 637" cx="12"
+                                                            cy="12" r="12" transform="translate(480 345)"
+                                                            fill="#fff" />
+                                                        <g id="Group_25927" data-name="Group 25927"
+                                                            transform="translate(480 345)">
+                                                            <path id="Union_5" data-name="Union 5"
+                                                                d="M0,12A12,12,0,1,1,12,24,12,12,0,0,1,0,12Zm1.2,0A10.8,10.8,0,1,0,12,1.2,10.812,10.812,0,0,0,1.2,12Zm1.2,0A9.6,9.6,0,1,1,12,21.6,9.611,9.611,0,0,1,2.4,12Zm5.115-1.244a1.083,1.083,0,0,0,0,1.529l3.059,3.059a1.081,1.081,0,0,0,1.529,0l5.1-5.1a1.084,1.084,0,0,0,0-1.53,1.081,1.081,0,0,0-1.529,0L11.339,13.05,9.045,10.756a1.082,1.082,0,0,0-1.53,0Z"
+                                                                transform="translate(0 0)" fill="#3490f3" />
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                            @else
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24.001" height="24"
+                                                    viewBox="0 0 24.001 24">
+                                                    <g id="Group_25929" data-name="Group 25929"
+                                                        transform="translate(-480 -345)">
+                                                        <circle id="Ellipse_637" data-name="Ellipse 637" cx="12"
+                                                            cy="12" r="12" transform="translate(480 345)"
+                                                            fill="#fff" />
+                                                        <g id="Group_25927" data-name="Group 25927"
+                                                            transform="translate(480 345)">
+                                                            <path id="Union_5" data-name="Union 5"
+                                                                d="M0,12A12,12,0,1,1,12,24,12,12,0,0,1,0,12Zm1.2,0A10.8,10.8,0,1,0,12,1.2,10.812,10.812,0,0,0,1.2,12Zm1.2,0A9.6,9.6,0,1,1,12,21.6,9.611,9.611,0,0,1,2.4,12Zm5.115-1.244a1.083,1.083,0,0,0,0,1.529l3.059,3.059a1.081,1.081,0,0,0,1.529,0l5.1-5.1a1.084,1.084,0,0,0,0-1.53,1.081,1.081,0,0,0-1.529,0L11.339,13.05,9.045,10.756a1.082,1.082,0,0,0-1.53,0Z"
+                                                                transform="translate(0 0)" fill="red" />
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                            @endif
+                                        </div>
                                     </div>
-                                @endforeach
+                                    <!-- Shop name -->
+                                    <h2 class="fs-14 fw-700 text-dark text-truncate-2 h-40px mt-3 mt-md-4 mb-0 mb-md-3">
+                                        <a href="{{ route('shop.visit', $seller->slug) }}"
+                                            class="text-reset hov-text-primary" tabindex="0">{{ $seller->name }}</a>
+                                    </h2>
+                                    <!-- Shop Rating -->
+                                    <div class="rating rating-mr-1 text-dark mb-3">
+                                        {{ renderStarRating($seller->rating) }}
+                                        <span class="opacity-60 fs-14">({{ $seller->num_of_reviews }}
+                                            {{ translate('Reviews') }})</span>
+                                    </div>
+                                    <!-- Visit Button -->
+                                    <a href="{{ route('shop.visit', $seller->slug) }}" class="btn-visit">
+                                        <span class="circle" aria-hidden="true">
+                                            <span class="icon arrow"></span>
+                                        </span>
+                                        <span class="button-text">{{ translate('Visit Store') }}</span>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    </section>
-                @endif
+                        @endif
+                    @endforeach
+                </div>
             </div>
-        </div>
-    </div>
+        {{-- </section> --}}
+        @endif
+    @endif
+
+    {{-- new top sellers --}}
+
+    {{-- new top brands --}}
+    <!-- Top Brands -->
+    @if (get_setting('top_brands') != null)
+        {{-- <div class="mb-2 mb-md-3 mt-2 mt-md-3"> --}}
+            <div class="container mt-2 mt-md-3 mb-2 mb-md-3 pb-4 pt-4" style="border-radius: 20px">
+                <!-- Top Section -->
+                <div class="d-flex mb-2 mb-md-3 align-items-baseline justify-content-between">
+                    <!-- Title -->
+                    <h3 class="fs-16 fs-md-20 fw-700 mb-2 mb-sm-0">{{ translate('Top Brands') }}</h3>
+                    <!-- Links -->
+                    <div class="d-flex">
+                        {{-- <a class="text-blue fs-10 fs-md-12 fw-700 hov-text-primary animate-underline-primary" --}}
+                        <a class="font-medium px-4 py-1 text-white text-sm bg-primary rounded-pill"
+                            href="{{ route('brands.all') }}">{{ translate('View All Brands') }}</a>
+                    </div>
+                </div>
+                <!-- Brands Section -->
+                <div class="bg-white px-3">
+                    <div
+                        class="row row-cols-xxl-6 row-cols-xl-6 row-cols-lg-4 row-cols-md-4 row-cols-3 gutters-16 border-top border-left">
+                        @php
+                            $top_brands = json_decode(get_setting('top_brands'));
+                            $brands = get_brands($top_brands);
+                        @endphp
+                        @foreach ($brands as $brand)
+                            <div
+                                class="col-sm-12 col text-center border-right border-bottom hov-scale-img has-transition hov-shadow-out z-1">
+                                <a href="{{ route('products.brand', $brand->slug) }}" class="d-block p-sm-3">
+                                    <img src="{{ isset($brand->brandLogo->file_name) ? my_asset($brand->brandLogo->file_name) : static_asset('assets/img/placeholder.jpg') }}"
+                                        class="lazyload h-md-100px mx-auto has-transition p-2 p-sm-4 mw-100"
+                                        alt="{{ $brand->getTranslation('name') }}"
+                                        onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';">
+                                    <p class="text-center text-dark fs-12 fs-md-14 fw-700 mt-2">
+                                        {{ $brand->getTranslation('name') }}
+                                    </p>
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        {{-- </div> --}}
+    @endif
+    {{-- new top brands --}}
 
 
 @endsection

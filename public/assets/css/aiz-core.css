@@ -759,7 +759,7 @@ fixed-bottom 1030*/
 }
 .bg-black,
 .hov-bg-black:hover {
-    background-color: #17171f !important;
+    /*background-color: #17171f !important;*/
 }
 .bg-soft-light,
 .hov-bg-soft-light:hover {
@@ -8695,11 +8695,11 @@ input[type="number"] {
     }
 
     .aiz-count-down-circle {
-        box-shadow: 0px 3px 20px rgb(0 0 0 / 16%);
+        /*box-shadow: 0px 3px 20px rgb(0 0 0 / 16%);*/
     }
 
     .aiz-accordion-panel ul li{
-        border-bottom: 1px solid #292933;
+        /*border-bottom: 1px solid #292933;*/
         padding-left: 1rem;
     }
     .aiz-accordion-panel ul li:last-child{

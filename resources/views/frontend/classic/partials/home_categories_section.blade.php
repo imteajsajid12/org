@@ -11,12 +11,16 @@
             <div class="container" style="padding: 25px; border-radius: 20px">
                 <div class="row gutters-16">
                     <!-- Top Section -->
-                    <div class="d-flex mb-2 mb-md-3 align-items-baseline justify-content-between">
+                    <div class="col-xl-12 col-lg-12 col-md-12 d-flex mb-2 mb-md-3 align-items-baseline justify-content-between">
                         <!-- Title -->
+                        
                         <h3 class="fs-16 fs-md-20 fw-700 mb-2 mb-sm-0 pl-3" >
-                            <span class="">{{ translate( $category_name ) }}</span>
+                            <i class="fa-brands fa-slack" style="color: rgb(255, 0, 0)"></i>
+                            <span class=""> {{ translate( $category_name ) }}</span>
                         </h3>
-
+                        {{-- <a class="text-blue fs-10 fs-md-12 fw-700 hov-text-primary animate-underline-primary" href="{{ route('products.category', $category->slug) }}">{{ translate('View All') }}</a> --}}
+                        <a class="font-medium px-4 py-1 text-white text-sm bg-primary rounded-pill" href="{{ route('products.category', $category->slug) }}">{{ translate('View All') }}</a>
+                        
                     </div>
                     <!-- Home category banner & name -->
 {{--                    <div class="col-xl-3 col-lg-4 col-md-5">--}}

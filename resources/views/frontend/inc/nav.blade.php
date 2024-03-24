@@ -303,11 +303,17 @@
 
 {{--                    </div>--}}
 
-                    <div class="phone">
-                        <i class="fa-solid fa-phone  phone_icon"></i> <a target="_blank" href="tel:{{ get_setting('helpline_number') }}"><p>{{ get_setting('helpline_number') }}</p></a>
+{{--                    <div class="phone">--}}
+{{--                        <i class="fa-solid fa-phone  phone_icon"></i> <a target="_blank" href="tel:{{ get_setting('helpline_number') }}"><p>{{ get_setting('helpline_number') }}</p></a>--}}
+{{--                    </div>--}}
+                    <div class="d-none d-lg-block ml-3 mr-0">
+                        <div class="phone">
+                            <i class="fa-solid fa-phone  phone_icon"></i> <a target="_blank" href="tel:{{ get_setting('helpline_number') }}"><p>{{ get_setting('helpline_number') }}</p></a>
+                      </div>
                     </div>
                     <div class="d-none d-xl-block ml-auto mr-0">
                         @auth
+                            <a href="{{ route('user.login') }}">
                             <span
                                 class="d-flex align-items-center nav-user-info py-20px @if (isAdmin()) ml-5 @endif"
                                 id="nav-user-info">
@@ -315,21 +321,27 @@
                                 <span
                                     class="size-40px rounded-circle overflow-hidden border border-transparent nav-user-img">
                                     @if ($user->avatar_original != null)
+
                                         <img src="{{ $user_avatar }}"
                                             class="img-fit h-100" alt="{{ translate('avatar') }}"
                                             onerror="this.onerror=null;this.src='{{ static_asset('assets/img/avatar-place.png') }}';">
+
                                     @else
                                         <img src="{{ static_asset('assets/img/avatar-place.png') }}" class="image" alt="{{ translate('avatar') }}"
                                             onerror="this.onerror=null;this.src='{{ static_asset('assets/img/avatar-place.png') }}';">
+
                                     @endif
+
                                 </span>
                                 <!-- Name -->
                                 <h4 class="h5 fs-14 fw-700 text-dark ml-2 mb-0">{{ $user->name }}</h4>
                             </span>
+                            </a>
                         @else
                             <!--Login & Registration -->
                             <span class="d-flex align-items-center nav-user-info ml-3">
                                 <!-- Image -->
+                                <a href="{{ route('user.login') }}">
                                 <span
                                     class="size-40px rounded-circle overflow-hidden border d-flex align-items-center justify-content-center nav-user-img">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="19.902" height="20.012"
@@ -339,6 +351,7 @@
                                             transform="translate(-2.064 -1.995)" fill="#91919b" />
                                     </svg>
                                 </span>
+                                </a>
 {{--                                <a href="{{ route('user.login') }}"--}}
 {{--                                    class="text-reset opacity-60 hov-opacity-100 hov-text-primary fs-12 d-inline-block border-right border-soft-light border-width-2 pr-2 ml-3">{{ translate('Login') }}</a>--}}
 {{--                                <a href="{{ route('user.registration') }}"--}}

@@ -66,12 +66,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- CSS Files -->
-    <link rel="stylesheet" href="{{ static_asset('assets/css/vendors.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/vendors.css') }}">
     @if ($rtl == 1)
-        <link rel="stylesheet" href="{{ static_asset('assets/css/bootstrap-rtl.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-rtl.min.css') }}">
     @endif
-    <link rel="stylesheet" href="{{ static_asset('assets/css/aiz-core.css?v=') }}{{ rand(1000, 9999) }}">
-    <link rel="stylesheet" href="{{ static_asset('assets/css/custom-style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/aiz-core.css?v=') }}{{ rand(1000, 9999) }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/custom-style.css') }}">
 
 
     <script>
@@ -367,8 +367,8 @@
     @yield('modal')
 
     <!-- SCRIPTS -->
-    <script src="{{ static_asset('assets/js/vendors.js') }}"></script>
-    <script src="{{ static_asset('assets/js/aiz-core.js?v=') }}{{ rand(1000, 9999) }}"></script>
+    <script src="{{ asset('assets/js/vendors.js') }}"></script>
+    <script src="{{ asset('assets/js/aiz-core.js?v=') }}{{ rand(1000, 9999) }}"></script>
 
 
 
@@ -795,7 +795,7 @@
 
             var iti = intlTelInput(input, {
                 separateDialCode: true,
-                utilsScript: "{{ static_asset('assets/js/intlTelutils.js') }}?1590403638580",
+                utilsScript: "{{ asset('assets/js/intlTelutils.js') }}?1590403638580",
                 onlyCountries: @php echo get_active_countries()->pluck('code') @endphp,
                 customPlaceholder: function(selectedCountryPlaceholder, selectedCountryData) {
                     if (selectedCountryData.iso2 == 'bd') {

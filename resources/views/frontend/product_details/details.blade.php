@@ -487,10 +487,17 @@
                         @if (Auth::check() || get_Setting('guest_checkout_activation') == 1) onclick="addToCart()" @else onclick="showLoginModal()" @endif>
                         <i class="las la-shopping-bag"></i> {{ translate('Add to cart') }}
                     </button>
-                    <button type="button" class="btn btn-primary buy-now fw-600 add-to-cart min-w-150px rounded-0"
+                    {{-- <button type="button" class="btn btn-primary buy-now fw-600 add-to-cart min-w-150px rounded-0"
                         @if (Auth::check() || get_Setting('guest_checkout_activation') == 1) onclick="addToCart()" @else onclick="showLoginModal()" @endif>
                         <i class="la la-shopping-cart"></i> {{ translate('Buy Now') }}
+                    </button> --}}
+                    {{-- direct buy now --}}
+                    <button type="button" class="btn btn-primary buy-now fw-600 add-to-cart min-w-150px rounded-0"
+                      @if (Auth::check()) onclick="buyNow()" @else onclick="buyNowAaa()" @endif>
+                        <i class="la la-shopping-cart"></i> {{ translate('Buy Now') }}
                     </button>
+                    {{-- direct buy now --}}
+
                 @endif
                 <button type="button" class="btn btn-secondary out-of-stock fw-600 d-none" disabled>
                     <i class="la la-cart-arrow-down"></i> {{ translate('Out of Stock') }}
@@ -591,3 +598,32 @@
         </div>
     </div>
 </div>
+
+@section('script')
+
+<script>
+        function buyNowAaa(){
+            if(checkAddToCartValidity()) {
+                $('.c-preloader').show();
+                $.ajax({
+                    type:"POST",
+                    url: "{{route('cart.addToCart')}}",
+                    data: $('#option-choice-form').serializeArray(),
+                    success: function(data){
+                        $('#addToCart-modal-body').html(null);
+                        $('.c-preloader').hide();
+                        $('#modal-size').removeClass('modal-lg');
+                        $('#addToCart-modal-body').html(data.modal_view);
+                        AIZ.extra.plusMinus();
+                        AIZ.plugins.slickCarousel();
+                        updateNavCart(data.nav_cart_view,data.cart_count);
+                        window.location.replace("{{route('cart')}}");
+                    }
+                });
+            } else{
+                AIZ.plugins.notify('warning', "Please choose all the options");
+            }
+        }
+</script>        
+
+@endsection

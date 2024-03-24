@@ -83,6 +83,20 @@ services:
                 - 'http://localhost:7700/health'
             retries: 3
             timeout: 5s
+  #php myadmin
+    phpmyadmin:
+      image: phpmyadmin
+      container_name: phpmyadmin
+      links:
+        - mysql
+      environment:
+        PMA_HOST: mysql
+        UPLOAD_LIMIT: 300M
+      restart: always
+      ports:
+        - 8081:80
+      networks:
+        - sail
 networks:
     sail:
         driver: bridge

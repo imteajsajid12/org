@@ -3,7 +3,7 @@
 @section('content')
 
     <!-- Steps -->
-    <section class="pt-5 mb-0">
+    <!-- <section class="pt-5 mb-0">
         <div class="container">
             <div class="row">
                 <div class="col-xl-8 mx-auto">
@@ -52,7 +52,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Order Confirmation -->
     <section class="py-4">
@@ -74,7 +74,17 @@
                             </g>
                         </svg>
                         <h1 class="mb-2 fs-28 fw-500 text-success">{{ translate('Thank You for Your Order!')}}</h1>
-                        <p class="fs-13 text-soft-dark">{{  translate('A copy or your order summary has been sent to') }} <strong>{{ json_decode($first_order->shipping_address)->email }}</strong></p>
+                        <p class="fs-13 text-soft-dark">{{  translate('A copy or your order summary has been sent to') }} <strong>{{ json_decode($first_order->shipping_address)->email ?? null }}</strong></p>
+                        {{-- invoice download --}}
+                        <a class="btn btn-soft-warning btn-sm hov-svg-white mt-2 mt-sm-0" href="{{ route('invoice.download', $first_order->id) }}" title="{{ translate('Download Invoice') }}">
+                            Download Invoice 
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12.001" viewBox="0 0 12 12.001">
+                                <g id="Group_24807" data-name="Group 24807" transform="translate(-1341 -424.999)">
+                                  <path id="Union_17" data-name="Union 17" d="M13936.389,851.5l.707-.707,2.355,2.355V846h1v7.1l2.306-2.306.707.707-3.538,3.538Z" transform="translate(-12592.95 -421)" fill="#f3af3d"/>
+                                  <rect id="Rectangle_18661" data-name="Rectangle 18661" width="12" height="1" transform="translate(1341 436)" fill="#f3af3d"/>
+                                </g>
+                            </svg>
+                        </a>
                     </div>
                     <!-- Order Summary -->
                     <div class="mb-4 bg-white p-4 border">
@@ -92,7 +102,7 @@
                                     </tr>
                                     <tr>
                                         <td class="w-50 fw-600 border-top-0 pl-0 py-2">{{ translate('Email')}}:</td>
-                                        <td class="border-top-0 py-2">{{ json_decode($first_order->shipping_address)->email }}</td>
+                                        <td class="border-top-0 py-2">{{ json_decode($first_order->shipping_address)->email ?? null}}</td>
                                     </tr>
                                     <tr>
                                         <td class="w-50 fw-600 border-top-0 pl-0 py-2">{{ translate('Shipping address')}}:</td>
