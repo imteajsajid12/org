@@ -1503,7 +1503,7 @@
                         <ul class="aiz-side-nav-list level-2">
                             @can('view_all_api')
                                 <li class="aiz-side-nav-item">
-                                    <a href="{{ route('staffs.index') }}" class="aiz-side-nav-link {{ areActiveRoutes(['staffs.index', 'staffs.create', 'staffs.edit'])}}">
+                                    <a href="{{ route('pathao.index') }}" class="aiz-side-nav-link ">
                                         <span class="aiz-side-nav-text">{{translate('Pathao Api')}}</span>
                                     </a>
                                 </li>
@@ -1517,7 +1517,7 @@
                             @endcan
                             @can('view_staff_roles')
                                 <li class="aiz-side-nav-item">
-                                    <a href="{{route('roles.index')}}" class="aiz-side-nav-link {{ areActiveRoutes(['roles.index', 'roles.create', 'roles.edit'])}}">
+                                    <a href="{{route('redx.index')}}" class="aiz-side-nav-link ">
                                         <span class="aiz-side-nav-text">{{translate('Redx Api')}}</span>
                                     </a>
                                 </li>

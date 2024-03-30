@@ -60,6 +60,72 @@
     				</div>
     			</div>
 
+				<div class="col-lg-12">
+					<div class="card shadow-none bg-light">
+						<div class="card-header">
+    						<h6 class="mb-0">{{ translate('Footer Info Widget') }}</h6>
+    					</div>
+						<div class="card-body">
+							<form action="{{ route('business_settings.update') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+								<div class="header-nav-menu">
+									<input type="hidden" name="types[]" value="footer_menu_labels">
+									<input type="hidden" name="types[]" value="footer_menu_links">
+									@if (get_setting('footer_menu_labels') != null)
+										@foreach (json_decode( get_setting('footer_menu_labels'), true) as $key => $value)
+											<div class="row gutters-5">
+												<div class="col-4">
+													<div class="form-group">
+														<input type="text" class="form-control" placeholder="{{translate('Label')}}" name="footer_menu_labels[]" value="{{ $value }}">
+													</div>
+												</div>
+												<div class="col">
+													<div class="form-group">
+														<input type="text" class="form-control" placeholder="{{ translate('Link with') }} http:// {{ translate('or') }} https://" name="footer_menu_links[]" value="{{ json_decode(App\Models\BusinessSetting::where('type', 'footer_menu_links')->first()->value, true)[$key] }}">
+													</div>
+												</div>
+												<div class="col-auto">
+													<button type="button" class="mt-1 btn btn-icon btn-circle btn-sm btn-soft-danger" data-toggle="remove-parent" data-parent=".row">
+														<i class="las la-times"></i>
+													</button>
+												</div>
+											</div>
+										@endforeach
+									@endif
+								</div>
+								<button
+									type="button"
+									class="btn btn-soft-secondary btn-sm"
+									data-toggle="add-more"
+									data-content='<div class="row gutters-5">
+										<div class="col-4">
+											<div class="form-group">
+												<input type="text" class="form-control" placeholder="{{translate('Label')}}" name="footer_menu_labels[]">
+											</div>
+										</div>
+										<div class="col">
+											<div class="form-group">
+												<input type="text" class="form-control" placeholder="{{ translate('Link with') }} http:// {{ translate('or') }} https://" name="footer_menu_links[]">
+											</div>
+										</div>
+										<div class="col-auto">
+											<button type="button" class="mt-1 btn btn-icon btn-circle btn-sm btn-soft-danger" data-toggle="remove-parent" data-parent=".row">
+												<i class="las la-times"></i>
+											</button>
+										</div>
+									</div>'
+									data-target=".header-nav-menu">
+									{{ translate('Add New') }}
+								</button>
+								<!-- Update Button -->
+								{{-- <div class="mt-4 text-right"> --}}
+									<button type="submit" class="btn btn-success w-230px btn-md rounded-2 fs-14 fw-700 shadow-success">{{ translate('Update') }}</button>
+								{{-- </div> --}}
+							</form>	
+						</div>
+					</div>
+				</div>
+
 				<!-- About Widget -->
     			<div class="col-lg-6">
     				<div class="card shadow-none bg-light">

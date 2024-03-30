@@ -8,7 +8,9 @@ class Order extends Model
 {
 
     protected $fillable = [
-        'courier_status'
+        'courier_status',
+        'tracking_code',
+        'delivery_status',
     ];
     public function orderDetails()
     {
@@ -64,4 +66,5 @@ class Order extends Model
     {
         return $this->hasOne(CommissionHistory::class);
     }
+    
 }

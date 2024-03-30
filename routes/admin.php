@@ -525,14 +525,27 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin', 'prevent-ba
         Route::get('/courier', 'steadfast')->name('steadfast.index');
         Route::post('/courier/steadfast', 'steadfast_order')->name('courier.steadfast');
         Route::post('/courier/steadfast_create', 'steadfast_create')->name('steadfast.create');
+        Route::post('/courier/steadfast_create/order', 'steadfast_sent_order')->name('steadfast.sent_order');
+
+
+
+
 
         Route::post('/courier/pathao', 'pathao_order')->name('courier.pathao');
 
        //Redx Api routes
-        Route::get('/courier/redx', 'redx_order')->name('courier.redx');
-        Route::post('/courier/redx', 'redx_order')->name('redx.index');
+        Route::get('/courier/redx', 'redx_index')->name('redx.index');
+        Route::post('/courier/redx', 'redx_create')->name('redx.create');
+        Route::post('/courier/redx_order', 'redx_order')->name('courier.redx');
+        Route::get('/courier/redx/area', 'redx_area')->name('redx.area');
+        Route::post('/courier/redx/send/area', 'redx_send')->name('redx.send_area');
+        //Route::get('/test', 'redx_send')->name('redx.send_area');
+
+        //pathao Api routes
+        Route::get('/courier/pathao', 'pathao_index')->name('pathao.index');
+        Route::post('/courier/pathao/create', 'pathao_create')->name('pathao.create');
+        Route::post('/courier/pathao/order', 'pathao_order')->name('courier.pathao');
     });
-
-
+   
 });
 

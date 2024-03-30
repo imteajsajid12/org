@@ -40,16 +40,16 @@
                             <div class="col-lg-12 col-sm-12 col-12">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">API URL</label>
-                                    <input type="text" name="api_url" class="form-control" value="{{$datas->api_url}}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Url">
+                                    <input type="text" name="api_url" class="form-control" value="{{$datas->api_url ?? "N/A"}}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Url">
                                     <small id="emailHelp" class="form-text text-muted">We'll never share your key with anyone else.</small>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">API Key</label>
-                                    <input type="text" class="form-control" value="{{$datas->api_key}}" name="api_key" id="exampleInputPassword1" placeholder="Key">
+                                    <input type="text" class="form-control" value="{{$datas->api_key ?? "N/A"}}" name="api_key" id="exampleInputPassword1" placeholder="Key">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Secret Key</label>
-                                    <input type="text" class="form-control"  value=" {{$datas->api_secret}}" name="api_secret" id="exampleInputPassword1" placeholder="secret">
+                                    <input type="text" class="form-control"  value=" {{$datas->api_secret ?? "N/A"}}" name="api_secret" id="exampleInputPassword1" placeholder="secret">
                                 </div>
 
                                 <button type="submit" class="btn btn-primary">Submit</button>

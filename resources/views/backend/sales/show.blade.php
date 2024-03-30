@@ -20,7 +20,7 @@
                 @if ($order->seller_id == $admin_user_id || get_setting('product_manage_by_admin') == 1)
                     
                     @if (addon_is_activated('delivery_boy'))
-                        <div class="col-md-3 ml-auto">
+                        <div class="col-md-2 ml-auto">
                             <label for="assign_deliver_boy">{{ translate('Assign Deliver Boy') }}</label>
                             @if (($delivery_status == 'pending' || $delivery_status == 'confirmed' || $delivery_status == 'picked_up') && auth()->user()->can('assign_delivery_boy_for_orders'))
                                 <select class="form-control aiz-selectpicker" data-live-search="true"
@@ -40,7 +40,7 @@
                         </div>
                     @endif
 
-                    <div class="col-md-3 ml-auto">
+                    <div class="col-md-2 ml-auto">
                         <label for="update_payment_status">{{ translate('Payment Status') }}</label>
                         @if (auth()->user()->can('update_order_payment_status'))
                             <select class="form-control aiz-selectpicker" data-minimum-results-for-search="Infinity"
@@ -56,7 +56,7 @@
                             <input type="text" class="form-control" value="{{ $payment_status }}" disabled>
                         @endif
                     </div>
-                    <div class="col-md-3 ml-auto">
+                    <div class="col-md-2 ml-auto">
                         <label for="update_delivery_status">{{ translate('Delivery Status') }}</label>
                         @if (auth()->user()->can('update_order_delivery_status') && $delivery_status != 'delivered' && $delivery_status != 'cancelled')
                             <select class="form-control aiz-selectpicker" data-minimum-results-for-search="Infinity"
@@ -84,15 +84,77 @@
                             <input type="text" class="form-control" value="{{ $delivery_status }}" disabled>
                         @endif
                     </div>
-                    <div class="col-md-3 ml-auto">
+                    <div class="col-md-2 ml-auto">
+                        <label for="update_delivery_status">{{ translate('Courier Status') }}</label>
+                        @if (auth()->user()->can('update_order_delivery_status') && $delivery_status != 'delivered' && $delivery_status != 'cancelled')
+                            <select class="form-control aiz-selectpicker" data-minimum-results-for-search="Infinity"
+                            id="firstSelectBox">
+                                <option label="Courier Status" value="" >
+                                    {{ translate('select') }}
+                                </option>
+                                <option value="steadfast">
+                                    {{ translate('Stead Fast') }}
+                                </option>
+                                <option value="redx" >
+                                    {{ translate('Redx') }}
+                                </option>
+                                <option value="pathao" >
+                                    {{ translate('Pathao') }}
+                                </option>
+                           
+                            </select>
+                        @else
+                            <input type="text" class="form-control" value="{{ $delivery_status }}" disabled>
+                        @endif
+                    </div>
+                    <div class="col-md-2 ml-auto">
                         <label for="update_tracking_code">
                             {{ translate('Tracking Code (optional)') }}
                         </label>
                         <input type="text" class="form-control" id="update_tracking_code"
                             value="{{ $order->tracking_code }}">
                     </div>
+
+
+
+                   
+                    
+
+
+                    
+                      
+                    
                 @endif
+                
+    
             </div>
+
+            <div class="row ">
+                <div class="col mt-3">
+                <div id="inputGroupContainer">
+                    <!-- Appended input field will be placed here -->
+                    <div class="col-md-5 ml-auto">
+                        <label for="update_delivery_status">{{ translate('Select Area') }}</label>
+                    <select id="secondSelectBox" class="form-control" style="display: none;">
+                        <option value="">-- Select --</option>
+                    </select>
+                    </div>
+                </div>
+                </div>
+            
+                <!-- First select box -->
+{{--<select id="firstSelectBox" class="form-control">
+    <option value="">Select Option</option>
+    <option value="option1">Option 1</option>
+    <option value="option2">Option 2</option>
+    <!-- Add more options as needed -->
+</select>--}}
+
+<!-- Second select box (Initially hidden) -->
+       
+
+            </div>
+
             <div class="mb-3">
                 @php
                     $removedXML = '<?xml version="1.0" encoding="UTF-8"?>';
@@ -330,12 +392,187 @@
                             class="las la-print"></i></a>
                 </div>
             </div>
-
+  
+           
         </div>
     </div>
 @endsection
 
 @section('script')
+
+<script>
+    $(document).ready(function() {
+        // Event listener for change on the first select box
+        $('#firstSelectBox').change(function() {
+            var selectedOption = $(this).val();
+            console.log(selectedOption);
+         if(selectedOption == 'redx'){  
+            // Make AJAX request based on the selected option
+            $.ajax({
+                url: '/admin/courier/redx/area', // Replace with your Laravel route endpoint
+                method: 'GET',
+                data: {
+                    option: selectedOption
+                },
+
+                success: function(response) {
+                    let areas = response.areas;
+                    // Clear existing options in the second select box
+                    $('#secondSelectBox').empty();
+                    $('#secondSelectBox').append('<option id="selectArea" value="">' + 'Select Area' + '</option>');
+                    // Populate the second select box with fetched data
+                    $.each(areas, function(index, item) {
+                        console.log(response);
+                        $('#secondSelectBox').append('<option id="selectArea" value="' + item.id + '">' + item.name + '</option>');
+                    });
+
+                    // Show the second select box
+                    $('#secondSelectBox').show();
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        }
+         if(selectedOption == 'steadfast'){  
+            let order_id = {{ $order->id }};
+            $.post('{{ route('steadfast.sent_order') }}', {
+                _token: '{{ @csrf_token() }}',
+                area_id: selectedOption,
+                order_id: order_id,
+                //order_details: order_details
+            },
+            function(data) {
+                console.log(data);
+                if (data.status ==='success') {
+                    AIZ.plugins.notify('success', '{{ translate('your order has been sent to redx') }}');
+                }
+                if (data.status === 'error') {
+                        AIZ.plugins.notify('danger', '{{ translate('order already has courier status') }}');
+                         alert(data.message); // Show an alert with the error message
+                    }
+            });
+   
+    
+           
+        }
+         
+        });
+
+
+
+
+
+        // Event listener for change on the second select box
+        $('#secondSelectBox').change(function() {
+            var selectedOption = $(this).val();
+           
+            console.log(selectedOption);
+            let order_id = {{ $order->id }};
+            let product_id = {{ $order->orderDetails[0]->product_id }};
+            //let order_details = {{ $order->orderDetails }};
+        //  ajex send a id to server
+        $.post('{{ route('redx.send_area') }}', {
+                _token: '{{ @csrf_token() }}',
+                area_id: selectedOption,
+                order_id: order_id,
+                //order_details: order_details
+            },
+            function(data) {
+                console.log(data);
+                if (data.status ==='success') {
+                    AIZ.plugins.notify('success', '{{ translate('your order has been sent to redx') }}');
+                }
+                if (data.status === 'error') {
+                        AIZ.plugins.notify('danger', '{{ translate('order already has courier status') }}');
+                         alert(data.message); // Show an alert with the error message
+                    }
+            });
+   
+        });
+
+
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        //$('#redx').hide();
+   
+    // Listen for change event on select box
+    $('#selection').on('change', function() {
+        var selectedOption = $(this).val();
+       
+        // Remove any previously appended input groups
+        $('#inputGroupContainer').empty();
+
+        // Append input group based on selected option
+        if (selectedOption === 'pathao') {
+            alert('pathao')
+            $("#redx").toggle(true);
+        //   display show
+
+            // Append input group for option 1
+            $('#inputGroupContainer').append(`
+            <div class="col-md-5 ml-auto">
+                        <label for="update_delivery_status">{{ translate('Courier Status') }}</label>
+                    <select class="custom-select my-1 mr-sm-2" id="selectArea"   name="producto" required>
+                                <option label="Courier Status" value="" >
+                                    {{ translate('select') }}
+                                </option>
+                            </divz
+            `);
+        } else if (selectedOption === 'redx') {
+            // Append input group for option 2
+            $('#inputGroupContainer').append(`
+            <div class="col-md-5 ml-auto">
+                        <label for="update_delivery_status">{{ translate('Select Area') }}</label>
+                    <select class="form-control aiz-selectpicker" data-minimum-results-for-search="Infinity"
+                            id="selectBox">
+                                <option label="Select Area" value="" >
+                                    {{ translate('select') }}
+                                </option>
+                            </select>
+                            </div>   
+            `);
+        
+        } 
+      // Attach change event listener using event delegation
+
+});  
+
+
+
+
+    $('#selectArea').click(function() {
+            var selectedValue = $(this).val();
+            // Make AJAX request
+            $.ajax({
+                url: '/admin/courier/redx/area', // Replace with your Laravel route endpoint
+                method: 'GET', // or 'POST', 'PUT', etc.
+                data: {
+                    selectedValue: selectedValue
+                },
+                success: function(response) {
+                    let area = response.areas;
+                    $.each(area, function(index, item) {
+                $('#selectArea').append('<option value="' + item.name + '">' + item.name + '</option>');
+            });
+                    console.log(response.areas);
+                    // Update the data container with the response data
+                    $('#dataContainer').html(response);
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });  
+
+});
+</script>
+
+
+
     <script type="text/javascript">
         $('#assign_deliver_boy').on('change', function() {
             var order_id = {{ $order->id }};

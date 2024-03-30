@@ -39,12 +39,12 @@
                             <div class="col-lg-12 col-sm-12 col-12">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">API Base URL</label>
-                                    <input type="text" name="api_url" class="form-control" value="" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Url">
+                                    <input type="text" name="api_url" class="form-control" value="{{$data->api_url ?? "N/A"}}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Url">
                                     <small id="emailHelp" class="form-text text-muted">We'll never share your key with anyone else.</small>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">API Access Token</label>
-                                    <input type="text" class="form-control" value="" name="api_key" id="exampleInputPassword1" placeholder="Key">
+                                    <input type="text" class="form-control" value="{{$data->token ?? "N/A"}}" name="token" id="exampleInputPassword1" placeholder="Key">
                                 </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
@@ -62,52 +62,52 @@
 @section('script')
     <script type="text/javascript">
 
-        $(document).on("change", ".check-all", function () {
-            if (this.checked) {
-                // Iterate each checkbox
-                $('.check-one:checkbox').each(function () {
-                    this.checked = true;
-                });
-            } else {
-                $('.check-one:checkbox').each(function () {
-                    this.checked = false;
-                });
-            }
+        //$(document).on("change", ".check-all", function () {
+        //    if (this.checked) {
+        //        // Iterate each checkbox
+        //        $('.check-one:checkbox').each(function () {
+        //            this.checked = true;
+        //        });
+        //    } else {
+        //        $('.check-one:checkbox').each(function () {
+        //            this.checked = false;
+        //        });
+        //    }
 
-        });
+        //});
 
-        function sort_customers(el) {
-            $('#sort_customers').submit();
-        }
+        //function sort_customers(el) {
+        //    $('#sort_customers').submit();
+        //}
 
-        function confirm_ban(url) {
-            $('#confirm-ban').modal('show', {backdrop: 'static'});
-            document.getElementById('confirmation').setAttribute('href', url);
-        }
+        //function confirm_ban(url) {
+        //    $('#confirm-ban').modal('show', {backdrop: 'static'});
+        //    document.getElementById('confirmation').setAttribute('href', url);
+        //}
 
-        function confirm_unban(url) {
-            $('#confirm-unban').modal('show', {backdrop: 'static'});
-            document.getElementById('confirmationunban').setAttribute('href', url);
-        }
+        //function confirm_unban(url) {
+        //    $('#confirm-unban').modal('show', {backdrop: 'static'});
+        //    document.getElementById('confirmationunban').setAttribute('href', url);
+        //}
 
-        function bulk_delete() {
-            var data = new FormData($('#sort_customers')[0]);
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                url: "{{route('bulk-customer-delete')}}",
-                type: 'POST',
-                data: data,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (response) {
-                    if (response == 1) {
-                        location.reload();
-                    }
-                }
-            });
-        }
+        //function bulk_delete() {
+        //    var data = new FormData($('#sort_customers')[0]);
+        //    $.ajax({
+        //        headers: {
+        //            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //        },
+        //        url: "{{route('bulk-customer-delete')}}",
+        //        type: 'POST',
+        //        data: data,
+        //        cache: false,
+        //        contentType: false,
+        //        processData: false,
+        //        success: function (response) {
+        //            if (response == 1) {
+        //                location.reload();
+        //            }
+        //        }
+        //    });
+        //}
     </script>
 @endsection
