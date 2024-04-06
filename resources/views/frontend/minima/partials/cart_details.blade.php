@@ -64,7 +64,7 @@
                                                 <img src="{{ uploaded_asset($product->thumbnail_img) }}"
                                                     class="img-fit size-70px"
                                                     alt="{{ $product->getTranslation('name')  }}"
-                                                    onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';">
+                                                    onerror="this.onerror=null;this.src='{{ asset('assets/img/placeholder.jpg') }}';">
                                             </span>
                                             <span class="fs-14">{{ $product_name_with_choice }}</span>
                                         </div>
@@ -158,7 +158,7 @@
         .table td {
     padding: 0.25rem;
     vertical-align: top;
- 
+
 }
 .check_btn .btn-sm.btn-icon {
     padding: 0.24rem;
@@ -168,8 +168,8 @@
         @media (max-width:767px){
           .responsive{
               width: 600px;
-          }  
-        }  
+          }
+        }
     </style>
     @if( $carts && count($carts) > 0 )
             <div  style="overflow-x:auto;">
@@ -186,7 +186,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                   
+
                     @php
                         $total = 0;
                         $final_total = 0;
@@ -214,7 +214,7 @@
                                     <img src="{{ uploaded_asset($product->thumbnail_img) }}"
                                         class="img-fit size-60px"
                                         alt="{{ $product->getTranslation('name')  }}"
-                                        onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';">
+                                        onerror="this.onerror=null;this.src='{{ asset('assets/img/placeholder.jpg') }}';">
                                 </span>
                             </td>
                             <td>
@@ -230,7 +230,7 @@
                                 <!--    <span class="fw-500 fs-14">Tax : </span>-->
                                 <!--    <span class="fw-500 fs-14">{{ cart_product_tax($cartItem, $product) }}</span> -->
                                 <!--</div>-->
-                            
+
                              </td>
                             <td>
                                 <div class="">
@@ -260,7 +260,7 @@
                                     @endif
                                 </div>
                             </td>
-                          
+
                             <td>
                                 <span class="opacity-60 fs-12 d-block d-md-none">{{ translate('Total')}}</span>
                                 <span class="fw-600 fs-16 text-primary">{{ single_price(cart_product_price($cartItem, $product, false) * $cartItem['quantity']) }}</span>
@@ -307,10 +307,10 @@
                      </tr>
                   </tbody>
                 </table>
-                
+
            </div>
-    
-       
+
+
     @else
         <div class="row">
             <div class="col-xl-8 mx-auto">
@@ -342,7 +342,7 @@
     AIZ.extra.plusMinus();
 </script>
 <script type="text/javascript">
-    
+
     function removeFromCartView(e, key) {
         e.preventDefault();
         removeFromCart(key);

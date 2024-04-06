@@ -113,7 +113,7 @@
             <div class="col-lg-6 col-md-6 col-12 order">
               <div class="section_main">
                   <h6 class="text-center my-3"><strong>অর্ডার কনফার্ম করতে আপনার নাম, ঠিকানা, মোবাইল নাম্বার লিখে অর্ডার কনফার্ম করুন বাটনে ক্লিক করুন</strong></h6>
-              
+
                   <form class="form-default" data-toggle="validator" action="{{ route('checkout.without_auth') }}" role="form" method="POST">
                     @csrf
                     <div class="row">
@@ -126,7 +126,7 @@
                               <label for="mobile_number" class="form-label">আপনার মোবাইল নাম্বার</label>
                               <input type="text" class="form-control" id="mobile_number" name="phone" placeholder="01900000000" required>
                             </div>
-    
+
                             <div class="mb-3 row">
                                 <label for="state" class="col-sm-2 col-form-label">জেলা</label>
                                 <div class="col-sm-10">
@@ -145,7 +145,7 @@
                                 </div>
                             </div>
                              <input type="hidden" name="shipping_charge" id="hidden_shipping_charge" value="0">
-                             
+
                             <div class="mb-3">
                               <label for="full_address" class="form-label">আপনার সম্পূর্ন ঠিকানা</label>
                               <textarea class="form-control" id="full_address" rows="2" name="address" value="{{old('address')}}" required placeholder="আপনার সম্পূর্ন ঠিকানা"></textarea>
@@ -159,7 +159,7 @@
                             <!--</div>-->
                         </div>
                     </div>
-              
+
                     <div class="card-header p-4 mt-4 mb-3 border-bottom-0">
                         <h3 class="fs-16 fw-700 text-dark mb-0">
                             {{ translate('Select a payment option') }}
@@ -175,7 +175,7 @@
                                         <input value="paypal" class="online_payment" type="radio"
                                             name="payment_option" checked>
                                         <span class="d-block aiz-megabox-elem rounded-0 p-2">
-                                            <img src="{{ static_asset('assets/img/cards/paypal.png') }}"
+                                            <img src="{{ asset('assets/img/cards/paypal.png') }}"
                                                 class="img-fit mb-2">
                                             <span class="d-block text-center">
                                                 <span
@@ -192,7 +192,7 @@
                                         <input value="stripe" class="online_payment" type="radio"
                                             name="payment_option" checked>
                                         <span class="d-block aiz-megabox-elem rounded-0 p-2">
-                                            <img src="{{ static_asset('assets/img/cards/stripe.png') }}"
+                                            <img src="{{ asset('assets/img/cards/stripe.png') }}"
                                                 class="img-fit mb-2">
                                             <span class="d-block text-center">
                                                 <span
@@ -209,7 +209,7 @@
                                         <input value="mercadopago" class="online_payment" type="radio"
                                             name="payment_option" checked>
                                         <span class="d-block aiz-megabox-elem rounded-0 p-2">
-                                            <img src="{{ static_asset('assets/img/cards/mercadopago.png') }}"
+                                            <img src="{{ asset('assets/img/cards/mercadopago.png') }}"
                                                 class="img-fit mb-2">
                                             <span class="d-block text-center">
                                                 <span
@@ -226,7 +226,7 @@
                                         <input value="sslcommerz" class="online_payment" type="radio"
                                             name="payment_option" checked>
                                         <span class="d-block aiz-megabox-elem rounded-0 p-2">
-                                            <img src="{{ static_asset('assets/img/cards/sslcommerz.png') }}"
+                                            <img src="{{ asset('assets/img/cards/sslcommerz.png') }}"
                                                 class="img-fit mb-2">
                                             <span class="d-block text-center">
                                                 <span
@@ -243,7 +243,7 @@
                                         <input value="instamojo" class="online_payment" type="radio"
                                             name="payment_option" checked>
                                         <span class="d-block aiz-megabox-elem rounded-0 p-2">
-                                            <img src="{{ static_asset('assets/img/cards/instamojo.png') }}"
+                                            <img src="{{ asset('assets/img/cards/instamojo.png') }}"
                                                 class="img-fit mb-2">
                                             <span class="d-block text-center">
                                                 <span
@@ -260,7 +260,7 @@
                                         <input value="razorpay" class="online_payment" type="radio"
                                             name="payment_option" checked>
                                         <span class="d-block aiz-megabox-elem rounded-0 p-2">
-                                            <img src="{{ static_asset('assets/img/cards/rozarpay.png') }}"
+                                            <img src="{{ asset('assets/img/cards/rozarpay.png') }}"
                                                 class="img-fit mb-2">
                                             <span class="d-block text-center">
                                                 <span
@@ -277,7 +277,7 @@
                                         <input value="paystack" class="online_payment" type="radio"
                                             name="payment_option" checked>
                                         <span class="d-block aiz-megabox-elem rounded-0 p-2">
-                                            <img src="{{ static_asset('assets/img/cards/paystack.png') }}"
+                                            <img src="{{ asset('assets/img/cards/paystack.png') }}"
                                                 class="img-fit mb-2">
                                             <span class="d-block text-center">
                                                 <span
@@ -294,7 +294,7 @@
                                         <input value="voguepay" class="online_payment" type="radio"
                                             name="payment_option" checked>
                                         <span class="d-block aiz-megabox-elem rounded-0 p-2">
-                                            <img src="{{ static_asset('assets/img/cards/vogue.png') }}"
+                                            <img src="{{ asset('assets/img/cards/vogue.png') }}"
                                                 class="img-fit mb-2">
                                             <span class="d-block text-center">
                                                 <span
@@ -311,7 +311,7 @@
                                         <input value="payhere" class="online_payment" type="radio"
                                             name="payment_option" checked>
                                         <span class="d-block aiz-megabox-elem rounded-0 p-2">
-                                            <img src="{{ static_asset('assets/img/cards/payhere.png') }}"
+                                            <img src="{{ asset('assets/img/cards/payhere.png') }}"
                                                 class="img-fit mb-2">
                                             <span class="d-block text-center">
                                                 <span
@@ -328,7 +328,7 @@
                                         <input value="ngenius" class="online_payment" type="radio"
                                             name="payment_option" checked>
                                         <span class="d-block aiz-megabox-elem rounded-0 p-2">
-                                            <img src="{{ static_asset('assets/img/cards/ngenius.png') }}"
+                                            <img src="{{ asset('assets/img/cards/ngenius.png') }}"
                                                 class="img-fit mb-2">
                                             <span class="d-block text-center">
                                                 <span
@@ -345,7 +345,7 @@
                                         <input value="iyzico" class="online_payment" type="radio"
                                             name="payment_option" checked>
                                         <span class="d-block aiz-megabox-elem rounded-0 p-2">
-                                            <img src="{{ static_asset('assets/img/cards/iyzico.png') }}"
+                                            <img src="{{ asset('assets/img/cards/iyzico.png') }}"
                                                 class="img-fit mb-2">
                                             <span class="d-block text-center">
                                                 <span
@@ -362,7 +362,7 @@
                                         <input value="nagad" class="online_payment" type="radio"
                                             name="payment_option" checked>
                                         <span class="d-block aiz-megabox-elem rounded-0 p-2">
-                                            <img src="{{ static_asset('assets/img/cards/nagad.png') }}"
+                                            <img src="{{ asset('assets/img/cards/nagad.png') }}"
                                                 class="img-fit mb-2">
                                             <span class="d-block text-center">
                                                 <span
@@ -379,7 +379,7 @@
                                         <input value="bkash" class="online_payment" type="radio"
                                             name="payment_option" checked>
                                         <span class="d-block aiz-megabox-elem rounded-0 p-2">
-                                            <img src="{{ static_asset('assets/img/cards/bkash.png') }}"
+                                            <img src="{{ asset('assets/img/cards/bkash.png') }}"
                                                 class="img-fit mb-2">
                                             <span class="d-block text-center">
                                                 <span
@@ -396,7 +396,7 @@
                                         <input value="aamarpay" class="online_payment" type="radio"
                                             name="payment_option" checked>
                                         <span class="d-block aiz-megabox-elem rounded-0 p-2">
-                                            <img src="{{ static_asset('assets/img/cards/aamarpay.png') }}"
+                                            <img src="{{ asset('assets/img/cards/aamarpay.png') }}"
                                                 class="img-fit mb-2">
                                             <span class="d-block text-center">
                                                 <span
@@ -413,7 +413,7 @@
                                         <input value="authorizenet" class="online_payment" type="radio"
                                             name="payment_option" checked>
                                         <span class="d-block aiz-megabox-elem rounded-0 p-2">
-                                            <img src="{{ static_asset('assets/img/cards/authorizenet.png') }}"
+                                            <img src="{{ asset('assets/img/cards/authorizenet.png') }}"
                                                 class="img-fit mb-2">
                                             <span class="d-block text-center">
                                                 <span
@@ -430,7 +430,7 @@
                                         <input value="payku" class="online_payment" type="radio"
                                             name="payment_option" checked>
                                         <span class="d-block aiz-megabox-elem rounded-0 p-2">
-                                            <img src="{{ static_asset('assets/img/cards/payku.png') }}"
+                                            <img src="{{ asset('assets/img/cards/payku.png') }}"
                                                 class="img-fit mb-2">
                                             <span class="d-block text-center">
                                                 <span
@@ -449,7 +449,7 @@
                                             <input value="flutterwave" class="online_payment"
                                                 type="radio" name="payment_option" checked>
                                             <span class="d-block aiz-megabox-elem rounded-0 p-2">
-                                                <img src="{{ static_asset('assets/img/cards/flutterwave.png') }}"
+                                                <img src="{{ asset('assets/img/cards/flutterwave.png') }}"
                                                     class="img-fit mb-2">
                                                 <span class="d-block text-center">
                                                     <span
@@ -466,7 +466,7 @@
                                             <input value="payfast" class="online_payment" type="radio"
                                                 name="payment_option" checked>
                                             <span class="d-block aiz-megabox-elem rounded-0 p-2">
-                                                <img src="{{ static_asset('assets/img/cards/payfast.png') }}"
+                                                <img src="{{ asset('assets/img/cards/payfast.png') }}"
                                                     class="img-fit mb-2">
                                                 <span class="d-block text-center">
                                                     <span
@@ -484,7 +484,7 @@
                                         <input value="paytm" class="online_payment" type="radio"
                                             name="payment_option" checked>
                                         <span class="d-block aiz-megabox-elem rounded-0 p-2">
-                                            <img src="{{ static_asset('assets/img/cards/paytm.jpg') }}"
+                                            <img src="{{ asset('assets/img/cards/paytm.jpg') }}"
                                                 class="img-fit mb-2">
                                             <span class="d-block text-center">
                                                 <span
@@ -501,7 +501,7 @@
                                         <input value="toyyibpay" class="online_payment" type="radio"
                                             name="payment_option" checked>
                                         <span class="d-block aiz-megabox-elem rounded-0 p-2">
-                                            <img src="{{ static_asset('assets/img/cards/toyyibpay.png') }}"
+                                            <img src="{{ asset('assets/img/cards/toyyibpay.png') }}"
                                                 class="img-fit mb-2">
                                             <span class="d-block text-center">
                                                 <span
@@ -518,7 +518,7 @@
                                         <input value="myfatoorah" class="online_payment" type="radio"
                                             name="payment_option" checked>
                                         <span class="d-block aiz-megabox-elem rounded-0 p-2">
-                                            <img src="{{ static_asset('assets/img/cards/myfatoorah.png') }}"
+                                            <img src="{{ asset('assets/img/cards/myfatoorah.png') }}"
                                                 class="img-fit mb-2">
                                             <span class="d-block text-center">
                                                 <span
@@ -535,7 +535,7 @@
                                         <input value="Khalti" class="online_payment" type="radio"
                                             name="payment_option" checked>
                                         <span class="d-block aiz-megabox-elem p-2">
-                                            <img src="{{ static_asset('assets/img/cards/khalti.png') }}"
+                                            <img src="{{ asset('assets/img/cards/khalti.png') }}"
                                                 class="img-fluid mb-2">
                                             <span class="d-block text-center">
                                                 <span
@@ -566,7 +566,7 @@
                                             <input value="cash_on_delivery" class="online_payment"
                                                 type="radio" name="payment_option" checked>
                                             <span class="d-block aiz-megabox-elem rounded-0 p-2">
-                                                <img src="{{ static_asset('assets/img/cards/cod.png') }}"
+                                                <img src="{{ asset('assets/img/cards/cod.png') }}"
                                                     class="img-fit mb-2">
                                                 <span class="d-block text-center">
                                                     <span
@@ -703,7 +703,7 @@
                             <button type="submit" class="btn btn-primary fs-14 fw-700 rounded-0 px-4">অর্ডার কনফার্ম  করুন</button>
                         </div>
                     </div>
-                
+
                 </form>
               </div>
             </div>
@@ -724,7 +724,7 @@
                             .table td {
                         padding: 0.25rem;
                         vertical-align: top;
-                     
+
                     }
                     .check_btn .btn-sm.btn-icon {
                         padding: 0.24rem;
@@ -734,8 +734,8 @@
                             @media (max-width:767px){
                               .responsive{
                                   width: 600px;
-                              }  
-                            }  
+                              }
+                            }
                         </style>
                         @if( $carts && count($carts) > 0 )
                                 <div  style="overflow-x:auto;">
@@ -752,13 +752,13 @@
                                         </tr>
                                       </thead>
                                       <tbody>
-                                       
+
                                         @php
                                             $total = 0;
                                             $final_total = 0;
                                             $coupon_descount = 0;
                                         @endphp
-                    
+
                                         @foreach ($carts as $key => $cartItem)
                                             @php
                                                 $product = get_single_product($cartItem['product_id']);
@@ -780,7 +780,7 @@
                                                         <img src="{{ uploaded_asset($product->thumbnail_img) }}"
                                                             class="img-fit size-60px"
                                                             alt="{{ $product->getTranslation('name')  }}"
-                                                            onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';">
+                                                            onerror="this.onerror=null;this.src='{{ asset('assets/img/placeholder.jpg') }}';">
                                                     </span>
                                                 </td>
                                                 <td>
@@ -796,7 +796,7 @@
                                                     <!--    <span class="fw-500 fs-14">Tax : </span>-->
                                                     <!--    <span class="fw-500 fs-14">{{ cart_product_tax($cartItem, $product) }}</span> -->
                                                     <!--</div>-->
-                                                
+
                                                  </td>
                                                 <td>
                                                     <div class="">
@@ -826,7 +826,7 @@
                                                         @endif
                                                     </div>
                                                 </td>
-                                              
+
                                                 <td>
                                                     <span class="opacity-60 fs-12 d-block d-md-none">{{ translate('Total')}}</span>
                                                     <span class="fw-600 fs-16 text-primary">{{ single_price(cart_product_price($cartItem, $product, false) * $cartItem['quantity']) }}</span>
@@ -873,10 +873,10 @@
                                          </tr>
                                       </tbody>
                                     </table>
-                                    
+
                                </div>
-                        
-                           
+
+
                         @else
                             <div class="row">
                                 <div class="col-xl-8 mx-auto">
@@ -945,31 +945,31 @@
             </div>
         </div>
     </div>
-    
+
     {{-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script>
-        
+
         window.onload = function() {
             let country_id = 18;
-    
+
             get_states(country_id);
         };
-    
+
         function getValue() {
           var selectElement = document.getElementById("mySelect");
-    
+
           var selectedValue = selectElement.value;
-    
+
           if (selectedValue) {
             var url = '{{ url('shapping/charge/custom') }}' + '/' + selectedValue;
-    
+
             $.ajax({
                 type: "GET",
                 url: url,
                 success: function(data) {
                     $('#shipping_charge').text(data.cost);
                     // let shipping_charge = parseFloat($('#shipping_charge').text());
-    
+
                     // Set the value to the hidden input field
                     $('#hidden_shipping_charge').val(data.cost);
                     grandTotal(data.cost);
@@ -977,12 +977,12 @@
             });
          }
         }
-        
+
         function grandTotal(charge) {
             let total_price = parseFloat(document.getElementById("total_price").innerText);
             let coupon_charge = parseFloat(document.getElementById("coupon_charge").innerText);
             let total = total_price + parseFloat(charge) - coupon_charge;
-            
+
             $('#payable_amount').text(parseFloat(total));
         }
     </script> --}}
@@ -994,7 +994,7 @@
     AIZ.extra.plusMinus();
 </script>
 <script type="text/javascript">
-    
+
     function removeFromCartView(e, key) {
         e.preventDefault();
         removeFromCart(key);
@@ -1022,7 +1022,7 @@
 @section('script')
 
     <script type="text/javascript">
-    
+
         function display_option(key){
 
         }
@@ -1045,7 +1045,7 @@
 
         window.onload = function() {
             let country_id = 18;
-    
+
             get_states(country_id);
         };
 
@@ -1101,19 +1101,19 @@
 
         function getValue() {
           var selectElement = document.getElementById("mySelect");
-    
+
           var selectedValue = selectElement.value;
-    
+
           if (selectedValue) {
             var url = '{{ url('shapping/charge/custom') }}' + '/' + selectedValue;
-    
+
             $.ajax({
                 type: "GET",
                 url: url,
                 success: function(data) {
                     $('#shipping_charge').text(data.cost);
                     // let shipping_charge = parseFloat($('#shipping_charge').text());
-    
+
                     // Set the value to the hidden input field
                     $('#hidden_shipping_charge').val(data.cost);
                     grandTotal(data.cost);
@@ -1121,12 +1121,12 @@
             });
          }
         }
-        
+
         function grandTotal(charge) {
             let total_price = parseFloat(document.getElementById("total_price").innerText);
             let coupon_charge = parseFloat(document.getElementById("coupon_charge").innerText);
             let total = total_price + parseFloat(charge) - coupon_charge;
-            
+
             $('#payable_amount').text(parseFloat(total));
         }
 

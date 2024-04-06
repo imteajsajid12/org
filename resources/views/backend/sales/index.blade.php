@@ -118,18 +118,18 @@
                             </div>
                         </form>
                         {{--pathao--}}
-                        <form id="destination-form2" class="mr-1" action="{{route('courier.pathao')}}" method="POST">
+                        <form id="destination-form2" class="mr-1" action="{{route('select.invoice.download')}}" method="get">
                             @csrf
                             <!-- Appended checkboxes will appear here -->
-                            <button type="submit" id="submit-btn" class="btn  btn-sm " style="background-color: #e83330; color: #FFFFFF"><i class="fa fa-truck"></i> {{ translate('Pathao') }}</button>
+                            <button type="submit" id="submit-btn" class="btn  btn-sm " style="background-color: #e83330; color: #FFFFFF"><i class="fa fa-print"></i> {{ translate('Print') }}</button>
                         </form>
 
                         {{--redex--}}
-                        <form id="destination-form3" class="mr-1" action="{{route('courier.redx')}}" method="POST">
+                        {{--<form id="destination-form3" class="mr-1" action="{{route('courier.redx')}}" method="POST">
                             @csrf
                             <!-- Appended checkboxes will appear here -->
                             <button type="submit" id="submit-btn2" class="btn btn-primary btn-sm pr-1"><i class="fa fa-truck"></i> {{ translate('Redx ') }} </button>
-                        </form>
+                        </form>--}}
 
                         {{--steadfast--}}
                         <form id="destination-form1" class="mr-1" action="{{route('courier.steadfast')}}" method="POST">

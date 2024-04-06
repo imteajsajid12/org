@@ -5,7 +5,7 @@
                 @if(get_setting('system_logo_white') != null)
                     <img class="mw-100" src="{{ uploaded_asset(get_setting('system_logo_white')) }}" class="brand-icon" alt="{{ get_setting('site_name') }}">
                 @else
-                    <img class="mw-100" src="{{ static_asset('assets/img/logo.png') }}" class="brand-icon" alt="{{ get_setting('site_name') }}">
+                    <img class="mw-100" src="{{ asset('assets/img/logo.png') }}" class="brand-icon" alt="{{ get_setting('site_name') }}">
                 @endif
             </a>
         </div>
@@ -1487,6 +1487,46 @@
                         </ul>
                     </li>
                 @endcanany
+
+
+
+                <!-- EmiSettings -->
+                @canany(['view_all_emi','view_emi_settings'])
+                    <li class="aiz-side-nav-item">
+                        <a href="#" class="aiz-side-nav-link">
+                            <div class="aiz-side-nav-icon">
+                                {{--<i class="fa fa-sitemap"></i>--}}
+                                <i class="fa fa-percent"></i>
+                            </div>
+                            <span class="aiz-side-nav-text">{{translate('EMI')}}</span>
+                            <span class="aiz-side-nav-arrow"></span>
+                        </a>
+                        <ul class="aiz-side-nav-list level-2">
+                            @can('view_all_api')
+                                <li class="aiz-side-nav-item">
+                                    <a href="{{ route('pathao.index') }}" class="aiz-side-nav-link ">
+                                        <span class="aiz-side-nav-text">{{translate('Emi Request')}}</span>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('view_staff_roles')
+                                <li class="aiz-side-nav-item">
+                                    <a href="{{route('steadfast.index')}}" class="aiz-side-nav-link {{ areActiveRoutes(['roles.index', 'roles.create', 'roles.edit'])}}">
+                                        <span class="aiz-side-nav-text">{{translate('Emi Settings')}}</span>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('view_staff_roles')
+                                <li class="aiz-side-nav-item">
+                                    <a href="{{route('redx.index')}}" class="aiz-side-nav-link ">
+                                        <span class="aiz-side-nav-text">{{translate('Redx Api')}}</span>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcanany
+               <!-- EmiSettings -->
 
 
 

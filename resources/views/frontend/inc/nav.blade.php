@@ -44,8 +44,8 @@
                                         <li>
                                             <a href="javascript:void(0)" data-flag="{{ $language->code }}"
                                                 class="dropdown-item @if ($system_language->code == $language->code) active @endif">
-                                                <img src="{{ static_asset('assets/img/placeholder.jpg') }}"
-                                                    data-src="{{ static_asset('assets/img/flags/' . $language->code . '.png') }}"
+                                                <img src="{{ asset('assets/img/placeholder.jpg') }}"
+                                                    data-src="{{ asset('assets/img/flags/' . $language->code . '.png') }}"
                                                     class="mr-1 lazyload" alt="{{ $language->name }}" height="11">
                                                 <span class="language">{{ $language->name }}</span>
                                             </a>
@@ -87,7 +87,7 @@
                             </li>
                         @endif
 
-                        <li class="list-inline-item dropdown ml-auto ml-lg-0 mr-0 mr-4" id="currency-change">   
+                        <li class="list-inline-item dropdown ml-auto ml-lg-0 mr-0 mr-4" id="currency-change">
                             <a href="{{ route('orders.track') }}" class="d-flex text-dark fs-12 py-2">
                                 {{ translate('Track Order') }}
                             </a>
@@ -97,8 +97,8 @@
                     </ul>
                 </div>
 
-                
-                
+
+
                 <div class="col-6 text-right d-none d-lg-block">
                     <ul class="list-inline mb-0 h-100 d-flex justify-content-end align-items-center">
                         @if (get_setting('vendor_system_activation') == 1)
@@ -158,7 +158,7 @@
                                 <img src="{{ uploaded_asset($header_logo) }}" alt="{{ env('APP_NAME') }}"
                                     class="mw-100 h-30px h-md-40px" height="40">
                             @else
-                                <img src="{{ static_asset('assets/img/logo.png') }}" alt="{{ env('APP_NAME') }}"
+                                <img src="{{ asset('assets/img/logo.png') }}" alt="{{ env('APP_NAME') }}"
                                     class="mw-100 h-30px h-md-40px" height="40">
                             @endif
                         </a>
@@ -341,11 +341,11 @@
 
                                         <img src="{{ $user_avatar }}"
                                             class="img-fit h-100" alt="{{ translate('avatar') }}"
-                                            onerror="this.onerror=null;this.src='{{ static_asset('assets/img/avatar-place.png') }}';">
+                                            onerror="this.onerror=null;this.src='{{ asset('assets/img/avatar-place.png') }}';">
 
                                     @else
-                                        <img src="{{ static_asset('assets/img/avatar-place.png') }}" class="image" alt="{{ translate('avatar') }}"
-                                            onerror="this.onerror=null;this.src='{{ static_asset('assets/img/avatar-place.png') }}';">
+                                        <img src="{{ asset('assets/img/avatar-place.png') }}" class="image" alt="{{ translate('avatar') }}"
+                                            onerror="this.onerror=null;this.src='{{ asset('assets/img/avatar-place.png') }}';">
 
                                     @endif
 
@@ -654,10 +654,10 @@
                     <span class="size-40px rounded-circle overflow-hidden border border-transparent nav-user-img">
                         @if ($user->avatar_original != null)
                             <img src="{{ $user_avatar }}" class="img-fit h-100" alt="{{ translate('avatar') }}"
-                                onerror="this.onerror=null;this.src='{{ static_asset('assets/img/avatar-place.png') }}';">
+                                onerror="this.onerror=null;this.src='{{ asset('assets/img/avatar-place.png') }}';">
                         @else
-                            <img src="{{ static_asset('assets/img/avatar-place.png') }}" class="image" alt="{{ translate('avatar') }}"
-                                onerror="this.onerror=null;this.src='{{ static_asset('assets/img/avatar-place.png') }}';">
+                            <img src="{{ asset('assets/img/avatar-place.png') }}" class="image" alt="{{ translate('avatar') }}"
+                                onerror="this.onerror=null;this.src='{{ asset('assets/img/avatar-place.png') }}';">
                         @endif
                     </span>
                     <!-- Name -->

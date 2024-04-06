@@ -16,7 +16,7 @@
             direction: <?php echo  $pdf_style_data['direction'] ?>;
             text-align: <?php echo  $pdf_style_data['text_align'] ?>;
 			padding:0;
-			margin:0; 
+			margin:0;
 		}
 		.gry-color *,
 		.gry-color{
@@ -48,12 +48,12 @@
 			text-align:<?php echo  $pdf_style_data['not_text_align'] ?>;
 		}
 		.line-separator {
-			width: 100%; 
-			text-align: center; 
-			border-top: 1px dotted #9c9ca1; 
-			margin: 10px 0 0; 
-		} 
-		.line-separator .line-separator-text { 
+			width: 100%;
+			text-align: center;
+			border-top: 1px dotted #9c9ca1;
+			margin: 10px 0 0;
+		}
+		.line-separator .line-separator-text {
 			background-color:#fff !important;
 			margin-top: -6px;
 			margin-left: auto;
@@ -74,7 +74,7 @@
 				@if($logo != null)
 					<img src="{{ uploaded_asset($logo) }}" height="20">
 				@else
-					<img src="{{ static_asset('assets/img/logo.png') }}" height="20">
+					<img src="{{ asset('assets/img/logo.png') }}" height="20">
 				@endif
 			</div>
 			<div style="text-align: center;">
@@ -103,7 +103,7 @@
 		<div style="padding: 0 1rem;">
 			<div style="border-bottom:1px dotted #9c9ca1;padding-bottom: 0.25rem;">
 				<div class="line-separator"><div class="line-separator-text" style="width: 40px;">{{ translate('BILL TO') }}</div></div>
-				<table>	
+				<table>
 					@php
 						$shipping_address = json_decode($order->shipping_address);
 					@endphp
@@ -131,10 +131,10 @@
 		                @if ($orderDetail->product != null)
 							<tr class="">
 								<td style="padding-left: 0">
-                                    {{ $orderDetail->product->name }} 
+                                    {{ $orderDetail->product->name }}
                                     @if($orderDetail->variation != null) ({{ $orderDetail->variation }}) @endif
                                     <br>
-                                    
+
                                         @php
                                             $product_stock = json_decode($orderDetail->product->stocks->first(), true);
                                         @endphp

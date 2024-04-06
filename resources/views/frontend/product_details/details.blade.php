@@ -513,6 +513,9 @@
                     <i class="la la-shopping-cart"></i> {{ translate('Buy Now') }}
                 </button>
             @endif
+            <a  href="{{ route('emi.creare.request', $detailedProduct->id) }}" class="btn btn buy-now fw-600 add-to-cart min-w-150px rounded-0 text-white ml-2" style="background-color: #e42702;">
+                <i class="fas fa-credit-card"></i> {{ translate('Emi ') }}
+                </a>
         </div>
 
         <!-- Promote Link -->
@@ -557,7 +560,7 @@
                             @if ($refund_sticker != null)
                                 <img src="{{ uploaded_asset($refund_sticker) }}" height="36">
                             @else
-                                <img src="{{ static_asset('assets/img/refund-sticker.jpg') }}" height="36">
+                                <img src="{{ asset('assets/img/refund-sticker.jpg') }}" height="36">
                             @endif
                         </a>
                         <a href="{{ route('returnpolicy') }}" class="text-blue hov-text-primary fs-14 ml-3"
@@ -624,6 +627,6 @@
                 AIZ.plugins.notify('warning', "Please choose all the options");
             }
         }
-</script>        
+</script>
 
 @endsection

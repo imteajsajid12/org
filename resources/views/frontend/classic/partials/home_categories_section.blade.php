@@ -13,24 +13,24 @@
                     <!-- Top Section -->
                     <div class="col-xl-12 col-lg-12 col-md-12 d-flex mb-2 mb-md-3 align-items-baseline justify-content-between">
                         <!-- Title -->
-                        
+
                         <h3 class="fs-16 fs-md-20 fw-700 mb-2 mb-sm-0 pl-3" >
                             <i class="fa-brands fa-slack" style="color: rgb(255, 0, 0)"></i>
                             <span class=""> {{ translate( $category_name ) }}</span>
                         </h3>
                         {{-- <a class="text-blue fs-10 fs-md-12 fw-700 hov-text-primary animate-underline-primary" href="{{ route('products.category', $category->slug) }}">{{ translate('View All') }}</a> --}}
                         <a class="font-medium px-4 py-1 text-white text-sm bg-primary rounded-pill" href="{{ route('products.category', $category->slug) }}">{{ translate('View All') }}</a>
-                        
+
                     </div>
                     <!-- Home category banner & name -->
 {{--                    <div class="col-xl-3 col-lg-4 col-md-5">--}}
 {{--                        <div class="h-200px h-sm-250px h-md-340px">--}}
 {{--                            <a href="{{ route('products.category', $category->slug) }}" class="d-block h-100 w-100 w-xl-auto hov-scale-img overflow-hidden home-category-banner">--}}
 {{--                                <span class="position-absolute h-100 w-100 overflow-hidden">--}}
-{{--                                    <img src="{{ isset($category->coverImage->file_name) ? my_asset($category->coverImage->file_name) : static_asset('assets/img/placeholder.jpg') }}"--}}
+{{--                                    <img src="{{ isset($category->coverImage->file_name) ? my_asset($category->coverImage->file_name) : asset('assets/img/placeholder.jpg') }}"--}}
 {{--                                        alt="{{ $category_name }}"--}}
 {{--                                        class="img-fit h-100 has-transition"--}}
-{{--                                        onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';">--}}
+{{--                                        onerror="this.onerror=null;this.src='{{ asset('assets/img/placeholder.jpg') }}';">--}}
 {{--                                </span>--}}
 {{--                                <span class="home-category-name fs-15 fw-600 text-white text-center">--}}
 {{--                                    <span class="">{{ $category_name }}</span>--}}

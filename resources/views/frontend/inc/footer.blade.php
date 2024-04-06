@@ -109,9 +109,9 @@
         <div class="mt-3 mb-4">
             <a href="{{ route('home') }}" class="d-block">
                 @if(get_setting('footer_logo') != null)
-                    <img class="lazyload h-45px" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ uploaded_asset(get_setting('footer_logo')) }}" alt="{{ env('APP_NAME') }}" height="45">
+                    <img class="lazyload h-45px" src="{{ asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ uploaded_asset(get_setting('footer_logo')) }}" alt="{{ env('APP_NAME') }}" height="45">
                 @else
-                    <img class="lazyload h-45px" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ static_asset('assets/img/logo.png') }}" alt="{{ env('APP_NAME') }}" height="45">
+                    <img class="lazyload h-45px" src="{{ asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ asset('assets/img/logo.png') }}" alt="{{ env('APP_NAME') }}" height="45">
                 @endif
             </a>
         </div>
@@ -191,12 +191,12 @@
                     <div class="d-flex mt-3">
                         <div class="">
                             <a href="{{ get_setting('play_store_link') }}" target="_blank" class="mr-2 mb-2 overflow-hidden hov-scale-img">
-                                <img class="lazyload has-transition" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ static_asset('assets/img/play.png') }}" alt="{{ env('APP_NAME') }}" height="44">
+                                <img class="lazyload has-transition" src="{{ asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ asset('assets/img/play.png') }}" alt="{{ env('APP_NAME') }}" height="44">
                             </a>
                         </div>
                         <div class="">
                             <a href="{{ get_setting('app_store_link') }}" target="_blank" class="overflow-hidden hov-scale-img">
-                                <img class="lazyload has-transition" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ static_asset('assets/img/app.png') }}" alt="{{ env('APP_NAME') }}" height="44">
+                                <img class="lazyload has-transition" src="{{ asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ asset('assets/img/app.png') }}" alt="{{ env('APP_NAME') }}" height="44">
                             </a>
                         </div>
                     </div>
@@ -218,9 +218,9 @@
             <div class="mt-3 mb-2 col-xl-4 col-lg-4 col-md-6 d-md-block d-none">
                 <a href="{{ route('home') }}" class="d-block">
                     @if(get_setting('footer_logo') != null)
-                        <img class="lazyload h-45px" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ uploaded_asset(get_setting('footer_logo')) }}" alt="{{ env('APP_NAME') }}" height="45">
+                        <img class="lazyload h-45px" src="{{ asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ uploaded_asset(get_setting('footer_logo')) }}" alt="{{ env('APP_NAME') }}" height="45">
                     @else
-                        <img class="lazyload h-45px" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ static_asset('assets/img/logo.png') }}" alt="{{ env('APP_NAME') }}" height="45">
+                        <img class="lazyload h-45px" src="{{ asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ asset('assets/img/logo.png') }}" alt="{{ env('APP_NAME') }}" height="45">
                     @endif
                 </a>
                 <!-- footer Description -->
@@ -228,7 +228,7 @@
                     {!! get_setting('about_us_description',null,App::getLocale()) !!}
                 </div>
             </div>
-        
+
 
             <!-- Contacts -->
             <div class="col-xl-3 col-lg-2 col-md-6 d-md-block d-none">
@@ -258,14 +258,14 @@
             @if ((get_setting('vendor_system_activation') == 1) || addon_is_activated('delivery_boy'))
             <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6">
                 <div class="text-center text-sm-left mt-4">
-                    <!-- Seller --> 
-                    
+                    <!-- Seller -->
+
                     @if (get_setting('vendor_system_activation') == 1)
                         <h4 class="fs-14 text-white text-uppercase fw-700 mb-3">{{ translate('Seller Zone') }}</h4>
                         <ul class="list-unstyled">
                             <li class="mb-2">
                                 <p class="fs-13 text-soft-light mb-0">
-                                    {{ translate('Become A Seller') }} 
+                                    {{ translate('Become A Seller') }}
                                     <a href="{{ route('shops.create') }}" class="fs-13 fw-700 text-warning ml-2">{{ translate('Apply Now') }}</a>
                                 </p>
                             </li>
@@ -297,7 +297,7 @@
                                     </a>
                                 </li>
                             @endguest
-                            
+
                             @if(get_setting('delivery_boy_app_link'))
                                 <li class="mb-2">
                                     <a class="fs-13 text-soft-light animate-underline-white" target="_blank" href="{{ get_setting('delivery_boy_app_link')}}">
@@ -315,8 +315,8 @@
             <!-- Quick links -->
             <div class="col-xl-2 col-lg-2 col-md-6 col-sm-12 col-12">
                 <div class="text-center text-sm-left mt-4">
-                    <!-- links --> 
-                    
+                    <!-- links -->
+
                         <h4 class="fs-14 text-dark text-uppercase fw-700 mb-3 d-md-block d-none">{{ translate('Quick Links') }}</h4>
                         <ul class="list-unstyled d-md-block d-flex justify-content-md-start justify-content-center">
                             @if (get_setting('footer_menu_labels') != null)
@@ -326,7 +326,7 @@
                                             <a href="{{ json_decode(get_setting('footer_menu_links'), true)[$key] }}" class="fs-13 fw-700 text-dark ml-2">
                                                 {{ translate($value) }}
                                             </a>
-                                        </p>    
+                                        </p>
                                     </li>
                                 @endforeach
                             @endif
@@ -338,8 +338,8 @@
             <!-- Information links -->
             {{-- <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6">
                 <div class="text-center text-sm-left mt-4">
-                    <!-- information --> 
-                    
+                    <!-- information -->
+
                         <h4 class="fs-14 text-white text-uppercase fw-700 mb-3">{{ translate('Information') }}</h4>
                         <ul class="list-unstyled">
                             <li class="mb-2">
@@ -366,7 +366,7 @@
 
                 </div>
             </div> --}}
-            
+
              <!-- Follow us -->
             <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12">
                 <div class="text-center text-sm-left mt-4">
@@ -457,7 +457,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Contacts -->
         <div class="aiz-accordion-wrap bg-black">
             <div class="aiz-accordion-heading container bg-black">
@@ -544,7 +544,7 @@
                     <ul class="list-unstyled mt-3">
                         <li class="mb-2 pb-2 {{ areActiveRoutes(['shops.create'],' active')}}">
                             <p class="fs-13 text-soft-light text-sm-secondary mb-0">
-                                {{ translate('Become A Seller') }} 
+                                {{ translate('Become A Seller') }}
                                 <a href="{{ route('shops.create') }}" class="fs-13 fw-700 text-warning ml-2">{{ translate('Apply Now') }}</a>
                             </p>
                         </li>
@@ -741,7 +741,7 @@
                             @if($user->avatar_original != null)
                                 <img src="{{ $user_avatar }}" alt="{{ translate('avatar') }}" class="rounded-circle size-20px">
                             @else
-                                <img src="{{ static_asset('assets/img/avatar-place.png') }}" alt="{{ translate('avatar') }}" class="rounded-circle size-20px">
+                                <img src="{{ asset('assets/img/avatar-place.png') }}" alt="{{ translate('avatar') }}" class="rounded-circle size-20px">
                             @endif
                         </span>
                         <span class="d-block mt-1 fs-10 fw-600 text-reset">{{ translate('My Account') }}</span>
@@ -752,7 +752,7 @@
                             @if($user->avatar_original != null)
                                 <img src="{{ $user_avatar }}" alt="{{ translate('avatar') }}" class="rounded-circle size-20px">
                             @else
-                                <img src="{{ static_asset('assets/img/avatar-place.png') }}" alt="{{ translate('avatar') }}" class="rounded-circle size-20px">
+                                <img src="{{ asset('assets/img/avatar-place.png') }}" alt="{{ translate('avatar') }}" class="rounded-circle size-20px">
                             @endif
                         </span>
                         <span class="d-block mt-1 fs-10 fw-600 text-reset">{{ translate('My Account') }}</span>
@@ -763,7 +763,7 @@
                             @if($user->avatar_original != null)
                                 <img src="{{ $user_avatar }}" alt="{{ translate('avatar') }}" class="rounded-circle size-20px">
                             @else
-                                <img src="{{ static_asset('assets/img/avatar-place.png') }}" alt="{{ translate('avatar') }}" class="rounded-circle size-20px">
+                                <img src="{{ asset('assets/img/avatar-place.png') }}" alt="{{ translate('avatar') }}" class="rounded-circle size-20px">
                             @endif
                         </span>
                         <span class="d-block mt-1 fs-10 fw-600 text-reset">{{ translate('My Account') }}</span>

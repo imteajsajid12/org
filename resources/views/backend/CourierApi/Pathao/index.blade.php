@@ -63,6 +63,10 @@
                                     <label for="exampleInputPassword1">API Password</label>
                                     <input type="text" class="form-control" value="{{$data->api_password ?? "N/A"}}" name="api_password" id="exampleInputPassword1" placeholder="Api Password">
                                 </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">API Store Id</label>
+                                    <input type="text" class="form-control" value="{{$data->api_password ?? "N/A"}}" name="api_store_id" id="exampleInputPassword1" placeholder="Api Password">
+                                </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
                         </div>

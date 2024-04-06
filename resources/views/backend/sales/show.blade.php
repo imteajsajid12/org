@@ -129,18 +129,35 @@
     
             </div>
 
-            <div class="row ">
+            <div class="form-row">
                 <div class="col mt-3">
-                <div id="inputGroupContainer">
+                <div id="inputGroupContainer " style="display: flex;">
                     <!-- Appended input field will be placed here -->
-                    <div class="col-md-5 ml-auto">
-                        <label for="update_delivery_status">{{ translate('Select Area') }}</label>
+                    <div class="form-group col-md-3">
+                        {{--<label for="update_delivery_status">{{ translate('Select Area') }}</label>--}}
                     <select id="secondSelectBox" class="form-control" style="display: none;">
                         <option value="">-- Select --</option>
                     </select>
                     </div>
+                    {{--zone--}}
+                    <div class="form-group col-md-3">
+                    <select id="pathao_city" class="form-control" style="display: none;">
+                        <option value="">-- Select --</option>
+                    </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                    <select id="pathao_zone" class="form-control" style="display: none;">
+                        <option value="">-- Select --</option>
+                    </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                    <select id="pathao_area" class="form-control" style="display: none;">
+                        <option value="">-- Select --</option>
+                    </select>
+                    </div>
+                    </div>
                 </div>
-                </div>
+         
             
                 <!-- First select box -->
 {{--<select id="firstSelectBox" class="form-control">
@@ -405,28 +422,30 @@
         // Event listener for change on the first select box
         $('#firstSelectBox').change(function() {
             var selectedOption = $(this).val();
-            console.log(selectedOption);
-         if(selectedOption == 'redx'){  
-            // Make AJAX request based on the selected option
+            //console.log(selectedOption);
+            if(selectedOption == ""){   // this called redx option
+            $('#pathao_city').hide();
+            $('#pathao_zone').hide();
+            $('#pathao_area').hide();
+            }
+         if(selectedOption == 'redx'){   // this called redx option
+            $('#pathao_city').hide();
+            $('#pathao_zone').hide();
+            $('#pathao_area').hide();
             $.ajax({
                 url: '/admin/courier/redx/area', // Replace with your Laravel route endpoint
                 method: 'GET',
                 data: {
                     option: selectedOption
                 },
-
                 success: function(response) {
                     let areas = response.areas;
-                    // Clear existing options in the second select box
                     $('#secondSelectBox').empty();
                     $('#secondSelectBox').append('<option id="selectArea" value="">' + 'Select Area' + '</option>');
-                    // Populate the second select box with fetched data
                     $.each(areas, function(index, item) {
-                        console.log(response);
+                        //console.log(response);
                         $('#secondSelectBox').append('<option id="selectArea" value="' + item.id + '">' + item.name + '</option>');
                     });
-
-                    // Show the second select box
                     $('#secondSelectBox').show();
                 },
                 error: function(xhr, status, error) {
@@ -434,7 +453,8 @@
                 }
             });
         }
-         if(selectedOption == 'steadfast'){  
+
+         if(selectedOption == 'steadfast'){  // this called steadfast option
             let order_id = {{ $order->id }};
             $.post('{{ route('steadfast.sent_order') }}', {
                 _token: '{{ @csrf_token() }}',
@@ -442,50 +462,149 @@
                 order_id: order_id,
                 //order_details: order_details
             },
-            function(data) {
-                console.log(data);
-                if (data.status ==='success') {
-                    AIZ.plugins.notify('success', '{{ translate('your order has been sent to redx') }}');
+            function(data) {     // callback function
+                //console.log(data);
+                if (data.status ==='success') {   
+                    AIZ.plugins.notify('success',  data.message);
                 }
                 if (data.status === 'error') {
-                        AIZ.plugins.notify('danger', '{{ translate('order already has courier status') }}');
-                         alert(data.message); // Show an alert with the error message
+                        AIZ.plugins.notify('danger', data.message);
+                        // alert(data.message); // Show an alert with the error message
                     }
             });
-   
-    
-           
         }
-         
+
+
+          if(selectedOption == 'pathao'){ // this called pathao option
+            $('#secondSelectBox').hide();
+            $.ajax({
+                url: '/admin/courier/pathao_city', // Replace with your Laravel route endpoint
+                method: 'GET',
+                data: {
+                    option: selectedOption
+                },
+
+                success: function(response) {
+                    //console.log(response.data.data);
+                    let areas = response.data.data;
+                    $('#pathao_city').empty();
+                    $('#pathao_city').append('<option id="selectArea" value="">' + 'Select Area' + '</option>');
+                    $.each(areas, function(index, item) {
+                        $('#pathao_city').append('<option id="selectArea" value="' + item.city_id + '">' + item.city_name + '</option>');
+                    });
+                    $('#pathao_city').show();
+                    $('#pathao_zone').show();
+                    $('#pathao_area').show();
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
+            }
+        });
+
+        $('#pathao_city').change(function() {
+            let selectedOption = $(this).val();
+            //console.log(selectedOption);
+       
+        $.get('{{ route('pathao.get_zone') }}', {   //  ajex send a zone id to pathao
+                _token: '{{ @csrf_token() }}',
+                zone_id: selectedOption,
+            },
+            
+            function(response) {    // callback function
+                //console.log( response );
+                let areas = response.data.data;
+                    $('#pathao_zone').empty();
+                    $('#pathao_zone').append('<option id="selectArea" value="">' + 'Select Area' + '</option>');
+                    $.each(areas, function(index, item) {
+                        console.log(response);
+                        $('#pathao_zone').append('<option id="selectArea" value="' + item.zone_id + '">' + item.zone_name + '</option>');
+                    });
+                    $('#pathao_zone').show();
+            }
+            );
+   
+        });
+
+        $('#pathao_zone').change(function() {
+            var selectedOption = $(this).val();
+        $.get('{{ route('pathao.get_area') }}', {   //  ajex send a zone id to pathao
+                _token: '{{ @csrf_token() }}',
+                zone_id: selectedOption,
+            },
+            
+            function(response) {    // callback function
+                //console.log(response);
+                let areas = response.data.data;
+                    $('#pathao_area').empty();
+                    $('#pathao_area').append('<option id="selectArea" value="">' + 'Select Area' + '</option>');
+                    $.each(areas, function(index, item) {
+                        //console.log(response);
+                        $('#pathao_area').append('<option id="selectArea" value="' + item.area_id + '">' + item.area_name + '</option>');
+                    });
+                    $('#pathao_area').show();
+            }
+            );
+   
+        });
+        $('#pathao_area').change(function() {
+            let pathao_area = $(this).val();
+            let patao_zone = $('#pathao_zone').val();
+            let patao_city = $('#pathao_city').val();
+            let order_id = {{ $order->id }}; // collect order_id
+            let  product_id = {{ $order->orderDetails[0]->product_id }}; // collect product id
+ 
+            //console.log(patao_city , patao_zone,pathao_area );
+        $.post('{{ route('courier.pathao') }}', {   //  ajex send a zone id to pathao
+                _token: '{{ @csrf_token() }}',
+                order_id: order_id,
+                product_id: product_id,
+                patao_city: patao_city,
+                patao_zone: patao_zone,
+                pathao_area: pathao_area,
+            },
+            
+            function(response) {    // callback function
+                //console.log(response);
+        
+                if (response.status ==='success') {
+                    AIZ.plugins.notify('success', response.message);
+                }
+                if (response.status === 'error') {
+                        AIZ.plugins.notify('danger', response.message);
+                        // alert(response.message); // Show an alert with the error message
+                    }
+            }
+            );
+   
         });
 
 
-
-
+    
 
         // Event listener for change on the second select box
         $('#secondSelectBox').change(function() {
             var selectedOption = $(this).val();
-           
-            console.log(selectedOption);
-            let order_id = {{ $order->id }};
-            let product_id = {{ $order->orderDetails[0]->product_id }};
+            //console.log(selectedOption);
+            let order_id = {{ $order->id }}; // collect order_id
+            let product_id = {{ $order->orderDetails[0]->product_id }}; // collect product id
             //let order_details = {{ $order->orderDetails }};
-        //  ajex send a id to server
-        $.post('{{ route('redx.send_area') }}', {
+       
+        $.post('{{ route('redx.send_area') }}', {   //  ajex send a area id to redx
                 _token: '{{ @csrf_token() }}',
                 area_id: selectedOption,
                 order_id: order_id,
                 //order_details: order_details
             },
-            function(data) {
-                console.log(data);
+            function(data) {    // callback function
+                //console.log(data);
                 if (data.status ==='success') {
-                    AIZ.plugins.notify('success', '{{ translate('your order has been sent to redx') }}');
+                    AIZ.plugins.notify('success', data.message);
                 }
                 if (data.status === 'error') {
-                        AIZ.plugins.notify('danger', '{{ translate('order already has courier status') }}');
-                         alert(data.message); // Show an alert with the error message
+                        AIZ.plugins.notify('danger', data.message);
+                        // alert(data.message); // Show an alert with the error message
                     }
             });
    
@@ -495,85 +614,10 @@
     });
 </script>
 
-<script>
-    $(document).ready(function() {
-        //$('#redx').hide();
-   
-    // Listen for change event on select box
-    $('#selection').on('change', function() {
-        var selectedOption = $(this).val();
-       
-        // Remove any previously appended input groups
-        $('#inputGroupContainer').empty();
-
-        // Append input group based on selected option
-        if (selectedOption === 'pathao') {
-            alert('pathao')
-            $("#redx").toggle(true);
-        //   display show
-
-            // Append input group for option 1
-            $('#inputGroupContainer').append(`
-            <div class="col-md-5 ml-auto">
-                        <label for="update_delivery_status">{{ translate('Courier Status') }}</label>
-                    <select class="custom-select my-1 mr-sm-2" id="selectArea"   name="producto" required>
-                                <option label="Courier Status" value="" >
-                                    {{ translate('select') }}
-                                </option>
-                            </divz
-            `);
-        } else if (selectedOption === 'redx') {
-            // Append input group for option 2
-            $('#inputGroupContainer').append(`
-            <div class="col-md-5 ml-auto">
-                        <label for="update_delivery_status">{{ translate('Select Area') }}</label>
-                    <select class="form-control aiz-selectpicker" data-minimum-results-for-search="Infinity"
-                            id="selectBox">
-                                <option label="Select Area" value="" >
-                                    {{ translate('select') }}
-                                </option>
-                            </select>
-                            </div>   
-            `);
-        
-        } 
-      // Attach change event listener using event delegation
-
-});  
 
 
 
-
-    $('#selectArea').click(function() {
-            var selectedValue = $(this).val();
-            // Make AJAX request
-            $.ajax({
-                url: '/admin/courier/redx/area', // Replace with your Laravel route endpoint
-                method: 'GET', // or 'POST', 'PUT', etc.
-                data: {
-                    selectedValue: selectedValue
-                },
-                success: function(response) {
-                    let area = response.areas;
-                    $.each(area, function(index, item) {
-                $('#selectArea').append('<option value="' + item.name + '">' + item.name + '</option>');
-            });
-                    console.log(response.areas);
-                    // Update the data container with the response data
-                    $('#dataContainer').html(response);
-                },
-                error: function(xhr, status, error) {
-                    console.error(error);
-                }
-            });
-        });  
-
-});
-</script>
-
-
-
-    <script type="text/javascript">
+ <script type="text/javascript">
         $('#assign_deliver_boy').on('change', function() {
             var order_id = {{ $order->id }};
             var delivery_boy = $('#assign_deliver_boy').val();
@@ -618,5 +662,5 @@
                 AIZ.plugins.notify('success', '{{ translate('Order tracking code has been updated') }}');
             });
         });
-    </script>
+ </script>
 @endsection

@@ -83,9 +83,9 @@
 {{--        <div class="mt-3 mb-4">--}}
 {{--            <a href="{{ route('home') }}" class="d-block">--}}
 {{--                @if(get_setting('footer_logo') != null)--}}
-{{--                    <img class="lazyload h-45px" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ uploaded_asset(get_setting('footer_logo')) }}" alt="{{ env('APP_NAME') }}" height="45">--}}
+{{--                    <img class="lazyload h-45px" src="{{ asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ uploaded_asset(get_setting('footer_logo')) }}" alt="{{ env('APP_NAME') }}" height="45">--}}
 {{--                @else--}}
-{{--                    <img class="lazyload h-45px" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ static_asset('assets/img/logo.png') }}" alt="{{ env('APP_NAME') }}" height="45">--}}
+{{--                    <img class="lazyload h-45px" src="{{ asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ asset('assets/img/logo.png') }}" alt="{{ env('APP_NAME') }}" height="45">--}}
 {{--                @endif--}}
 {{--            </a>--}}
 {{--        </div>--}}
@@ -158,12 +158,12 @@
 {{--                    <div class="d-flex mt-3">--}}
 {{--                        <div class="">--}}
 {{--                            <a href="{{ get_setting('play_store_link') }}" target="_blank" class="mr-2 mb-2 overflow-hidden hov-scale-img">--}}
-{{--                                <img class="lazyload has-transition" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ static_asset('assets/img/play.png') }}" alt="{{ env('APP_NAME') }}" height="44">--}}
+{{--                                <img class="lazyload has-transition" src="{{ asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ asset('assets/img/play.png') }}" alt="{{ env('APP_NAME') }}" height="44">--}}
 {{--                            </a>--}}
 {{--                        </div>--}}
 {{--                        <div class="">--}}
 {{--                            <a href="{{ get_setting('app_store_link') }}" target="_blank" class="overflow-hidden hov-scale-img">--}}
-{{--                                <img class="lazyload has-transition" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ static_asset('assets/img/app.png') }}" alt="{{ env('APP_NAME') }}" height="44">--}}
+{{--                                <img class="lazyload has-transition" src="{{ asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ asset('assets/img/app.png') }}" alt="{{ env('APP_NAME') }}" height="44">--}}
 {{--                            </a>--}}
 {{--                        </div>--}}
 {{--                    </div>--}}
@@ -632,7 +632,7 @@
 {{--                            @if($user->avatar_original != null)--}}
 {{--                                <img src="{{ $user_avatar }}" alt="{{ translate('avatar') }}" class="rounded-circle size-20px">--}}
 {{--                            @else--}}
-{{--                                <img src="{{ static_asset('assets/img/avatar-place.png') }}" alt="{{ translate('avatar') }}" class="rounded-circle size-20px">--}}
+{{--                                <img src="{{ asset('assets/img/avatar-place.png') }}" alt="{{ translate('avatar') }}" class="rounded-circle size-20px">--}}
 {{--                            @endif--}}
 {{--                        </span>--}}
 {{--                        <span class="d-block mt-1 fs-10 fw-600 text-reset">{{ translate('My Account') }}</span>--}}
@@ -643,7 +643,7 @@
 {{--                            @if($user->avatar_original != null)--}}
 {{--                                <img src="{{ $user_avatar }}" alt="{{ translate('avatar') }}" class="rounded-circle size-20px">--}}
 {{--                            @else--}}
-{{--                                <img src="{{ static_asset('assets/img/avatar-place.png') }}" alt="{{ translate('avatar') }}" class="rounded-circle size-20px">--}}
+{{--                                <img src="{{ asset('assets/img/avatar-place.png') }}" alt="{{ translate('avatar') }}" class="rounded-circle size-20px">--}}
 {{--                            @endif--}}
 {{--                        </span>--}}
 {{--                        <span class="d-block mt-1 fs-10 fw-600 text-reset">{{ translate('My Account') }}</span>--}}
@@ -654,7 +654,7 @@
 {{--                            @if($user->avatar_original != null)--}}
 {{--                                <img src="{{ $user_avatar }}" alt="{{ translate('avatar') }}" class="rounded-circle size-20px">--}}
 {{--                            @else--}}
-{{--                                <img src="{{ static_asset('assets/img/avatar-place.png') }}" alt="{{ translate('avatar') }}" class="rounded-circle size-20px">--}}
+{{--                                <img src="{{ asset('assets/img/avatar-place.png') }}" alt="{{ translate('avatar') }}" class="rounded-circle size-20px">--}}
 {{--                            @endif--}}
 {{--                        </span>--}}
 {{--                        <span class="d-block mt-1 fs-10 fw-600 text-reset">{{ translate('My Account') }}</span>--}}
@@ -730,12 +730,12 @@
                             {{--                       //image--}}
                             <a href="{{ route('home') }}" class="d-block">
                                 @if(get_setting('footer_logo') != null)
-                                    <img class="lazyload h-45px" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}"
+                                    <img class="lazyload h-45px" src="{{ asset('assets/img/placeholder-rect.jpg') }}"
                                          data-src="{{ uploaded_asset(get_setting('footer_logo')) }}"
                                          alt="{{ env('APP_NAME') }}" height="45">
                                 @else
-                                    <img class="lazyload h-45px" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}"
-                                         data-src="{{ static_asset('assets/img/logo.png') }}" alt="{{ env('APP_NAME') }}"
+                                    <img class="lazyload h-45px" src="{{ asset('assets/img/placeholder-rect.jpg') }}"
+                                         data-src="{{ asset('assets/img/logo.png') }}" alt="{{ env('APP_NAME') }}"
                                          height="45">
                                 @endif
                             </a>
